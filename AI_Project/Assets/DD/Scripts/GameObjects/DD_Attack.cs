@@ -9,7 +9,7 @@ public class DD_Attack : MonoBehaviour
 {
     // ---------------------------------------------------------------------
     private DD_GameManager gameManager;
-    public float range = 10;
+    public float range;
     public float speed = 3;
     public float damage = 30;
     public int teamID = -1;
@@ -25,36 +25,7 @@ public class DD_Attack : MonoBehaviour
     void FixedUpdate()
     {
         MoveAttack();
-        CheckCurrentPositionForTargets();
     }//-----
-
-
-    private void CheckCurrentPositionForTargets()
-    {
-        int currentX = (int)Mathf.Round(transform.position.x);
-        int currentZ = (int)Mathf.Round(transform.position.z);
-
-        // If the Current Position is on the board
-        if (currentX >= 0 && currentX < gameManager.playArea.GetLength(1) && currentZ >= 0 && currentZ < gameManager.playArea.GetLength(1))
-        {         
-          //  print( " x " + currentX + ", Z " + currentZ   );
-            GameObject objectFound = gameManager.playArea[currentZ, currentX];
-         //   print(objectFound);
-
-            if (objectFound && objectFound.GetComponent<DD_UnitHealth>()) // object has health 
-            {
-             //   print("found team ID" + objectFound.GetComponent<DD_Unit>().team.teamID);
-             //   print(" this ID" + teamID);
-
-                if (objectFound.GetComponent<DD_Unit>().team.teamID != teamID) // Ensure Enemy team
-                {
-                    objectFound.GetComponent<DD_UnitHealth>().Damage(damage); // apply damage
-                    Destroy(gameObject); // remove bullet
-                }
-            }
-        }
-    }//----
-
 
     private void MoveAttack()
     {
