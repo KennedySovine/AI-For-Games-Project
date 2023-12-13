@@ -8,15 +8,20 @@ using UnityEngine;
 public class DD_UnitHealth : MonoBehaviour
 {
     // ---------------------------------------------------------------------
-    public DD_Unit unitScript = null;
+    public KS_Unit unitScript = null;
     private GameObject hpBar = null;
     // private GameObject hitText = null;
-    public float maxHealth = 100;
+    public float maxHealth;
+
+    [Header("Respawn")]
+    private float timeTillRespawn = 0;
+    private float respawnTimer;
 
     // ---------------------------------------------------------------------
     void Start()
     {
-        unitScript = GetComponentInParent<DD_Unit>();
+        unitScript = GetComponentInParent<KS_Unit>();
+        int currentLevel = unitScript.level;
         CreateHPBar();
     }
     //----  
@@ -29,6 +34,19 @@ public class DD_UnitHealth : MonoBehaviour
         CheckHealthLevel();
     }//-----
 
+    void Update()
+    {
+        if (!(unitScript.isAlive) && respawnTimer < timeTillRespawn )
+        {
+            respawnTimer += Time.deltaTime;
+        }
+        else
+        {
+            timeTillRespawn = 0;
+            unitScript.isAlive = true;
+        }
+    }
+
 
 
     // ---------------------------------------------------------------------
@@ -37,26 +55,16 @@ public class DD_UnitHealth : MonoBehaviour
 
         if (unitScript.health < 0)
         {
-            // Move the unit off the board
-            int newX = unitScript.unitID;
-            int newZ = -3 - unitScript.team.teamID;
-            unitScript.transform.position = new(newX, 0, newZ);
+            //Start a timer
+            timeTillRespawn = (unitScript.level * 2) + 4;
+            unitScript.isAlive = false;
+            unitScript.currentPosition = unitScript.basePosition;
 
-            // Clear the array
-            unitScript.gameManager.playArea[(int)unitScript.currentPosition.z, (int)unitScript.currentPosition.x] = null;
 
-            // Reduce Team active members
-            unitScript.team.activeTeamMembers--;
-            unitScript.gameManager.activeUnits.Remove(unitScript.gameObject);
-            unitScript.health = maxHealth;
             // Deselect unit
             if(unitScript.isPlayerControlled) GetComponent<DD_UnitPlayerControl>().isSelected = false;
-
-            // Deactivate unit
-            unitScript.isAlive = false;
         }
     }//-----
-
 
 
     // ---------------------------------------------------------------------
