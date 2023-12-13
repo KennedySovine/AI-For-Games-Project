@@ -11,7 +11,7 @@ public class Turret_Attack : MonoBehaviour
 
     // ---------------------------------------------------------------------
     void Start()
-    {    // The game manager will be use to access the game board
+    {   
     }
 
     // ---------------------------------------------------------------------
@@ -20,7 +20,7 @@ public class Turret_Attack : MonoBehaviour
         Vector3 currentPostion = transform.position;
         Vector3 enemyPosition = new Vector3(0, 0, 0);
         GameObject attackItem;
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Red");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(teamTarget);
         foreach (GameObject enemy in enemies)
         {
             if (!lockedOn)

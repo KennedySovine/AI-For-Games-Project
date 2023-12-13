@@ -62,7 +62,7 @@ public class DD_UnitHealth : MonoBehaviour
 
 
             // Deselect unit
-            if(unitScript.isPlayerControlled) GetComponent<DD_UnitPlayerControl>().isSelected = false;
+            //if(unitScript.isPlayerControlled) GetComponent<DD_UnitPlayerControl>().isSelected = false;
         }
     }//-----
 

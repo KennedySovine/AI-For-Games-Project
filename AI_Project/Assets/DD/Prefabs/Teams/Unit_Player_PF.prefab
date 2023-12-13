@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5573208990883223886}
   - component: {fileID: 1427460760893361799}
   - component: {fileID: 4679721092501007960}
-  - component: {fileID: 1678302711030127796}
   - component: {fileID: 7263510745834353569}
   m_Layer: 0
   m_Name: Unit_Player_PF
@@ -107,53 +106,6 @@ MonoBehaviour:
   isSelected: 0
   squadLeader: {fileID: 0}
   useArrayFormation: 0
---- !u!114 &1678302711030127796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214879434611196659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e20838d6ab0f8d444b71754fe8230021, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAlive: 0
-  health: 200
-  xPos: 0
-  zPos: 0
-  team: {fileID: 0}
-  gameManager: {fileID: 0}
-  unitID: -1
-  unitState: 0
-  isPlayerControlled: 1
-  basePosition: {x: 0, y: 0, z: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
-  currentPosition: {x: 5, y: 0, z: 8}
-  startPosition: {x: 0, y: 0, z: 0}
-  nextPosition: {x: 0, y: 0, z: 0}
-  goalPosition: {x: 0, y: 0, z: 0}
-  speed: 3
-  isMoving: 0
-  fleeRange: 20
-  stopRange: 2
-  obstacleAhead: 0
-  unitHeading: 0
-  resourceRange: 50
-  resourceCarrying: 0
-  resourceLimit: 10
-  resourceHarvestSpeed: 10
-  isDepositing: 0
-  nearestResourcePosition: {x: -50, y: 50, z: -50}
-  ammo: 1000
-  nearestEnemyPosition: {x: -50, y: 50, z: -50}
-  enemyChaseRange: 10
-  attackRange: 5
-  attackCoolDown: 2
-  attackPF: {fileID: 7542795780032822868, guid: aac069fcb5f172f43a45328ef4ea897f, type: 3}
-  friendsIDs: 
-  waypointsToTarget: 
 --- !u!114 &7263510745834353569
 MonoBehaviour:
   m_ObjectHideFlags: 0
