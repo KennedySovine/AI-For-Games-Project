@@ -40,8 +40,8 @@ public class DD_PlayerInputManager : MonoBehaviour
     private void CameraControl()
     {
         // Detect input and update camera postion
-        float newCamX = gameCamera.transform.position.x + Input.GetAxis("Horizontal") * camMoveSpeed * Time.deltaTime;
-        float newCamZ = gameCamera.transform.position.z + Input.GetAxis("Vertical") * camMoveSpeed * Time.deltaTime;
+        float newCamX = gameCamera.transform.position.x - Input.GetAxis("Vertical") * camMoveSpeed * Time.deltaTime;
+        float newCamZ = gameCamera.transform.position.z + Input.GetAxis("Horizontal") * camMoveSpeed * Time.deltaTime;
         float newCamY = gameCamera.transform.position.y;
 
 
