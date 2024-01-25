@@ -18,7 +18,7 @@ public class Minion : DD_BaseObject
     public Vector3 currentPosition = Vector3.zero;
 
     [Header("Movement")]
-    public float speed = 1;
+    public float speed = 2.0F;
     public bool isMoving = false;
     public GameObject[] waypoints;
     private int waypointNum;
@@ -42,10 +42,13 @@ public class Minion : DD_BaseObject
     private GameObject[] teamMembers;
     public int damageReduction;
 
+    public GameObject nextStruct;
+
 
     // ---------------------------------------------------------------------
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<DD_GameManager>();
         waypoints = new GameObject[4];
         waypointNum = 0;
         //Get the unit's team
@@ -84,6 +87,7 @@ public class Minion : DD_BaseObject
 
     private void FixedUpdate()
     {
+        nextStruct = gameManager.nextStructure(enemyTeam);
         currentPosition = transform.position;
         if (isAlive)
         {
@@ -179,7 +183,8 @@ public class Minion : DD_BaseObject
                 }
                 else
                 {
-                    targetPosition = gameManager.nextStructure(enemyTeam).transform.position;
+                    GameObject nextStruct = gameManager.nextStructure(enemyTeam);
+                    targetPosition = nextStruct.transform.position;
 
                 }
             }

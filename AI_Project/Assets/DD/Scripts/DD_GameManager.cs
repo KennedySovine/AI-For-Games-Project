@@ -79,6 +79,7 @@ public class DD_GameManager : MonoBehaviour
 
     public GameObject nextStructure (string team)
     {
+        //Debug.Log(team);
         if (team == "Red")
         {
             foreach (GameObject structure in redInfrastructure)
