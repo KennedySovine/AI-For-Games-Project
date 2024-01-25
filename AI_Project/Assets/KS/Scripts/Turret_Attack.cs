@@ -26,7 +26,7 @@ public class Turret_Attack : MonoBehaviour
             if (!lockedOn)
             {
                 enemyPosition = enemy.transform.position;
-                Debug.Log(Vector3.Distance(transform.position, enemyPosition));
+                //Debug.Log(Vector3.Distance(transform.position, enemyPosition));
                 lockedOn = true;
             }
             if (Vector3.Distance(currentPostion, enemyPosition) <= range && lockedOn)
@@ -46,7 +46,7 @@ public class Turret_Attack : MonoBehaviour
         }
     }
 
-    private void sendAttack(Vector3 enemyPos)
+    /*private void sendAttack(Vector3 enemyPos)
     {
         if (!bullet) return;
         transform.LookAt(enemyPos);
@@ -54,5 +54,5 @@ public class Turret_Attack : MonoBehaviour
         turretAttack.GetComponent<DD_Attack>().range = range;
         turretAttack.transform.SetParent(null);
         turretAttack.transform.position = Vector3.MoveTowards(turretAttack.transform.position, enemyPos, 1);
-    }
+    }*/
 }

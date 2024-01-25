@@ -9,8 +9,6 @@ public class Structures : MonoBehaviour
     public int maxHealth;
     public int healthRegeneration;
 
-    private int intervalUpdate = 1;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -22,16 +20,17 @@ public class Structures : MonoBehaviour
     {
         if (health < maxHealth)
         {
-            regen();
+            InvokeRepeating("regenHealth", 0, 1f);
+        }
+        else
+        {
+            CancelInvoke();
         }
         
     }
 
-    IEnumerator regen()
+    void regenHealth()
     {
-        for(; ;)
-        {
-            health += healthRegeneration;
-        }
+        health += healthRegeneration;
     }
 }
