@@ -89,19 +89,20 @@ public class Minion : DD_BaseObject
     {
         nextStruct = gameManager.nextStructure(enemyTeam);
         currentPosition = transform.position;
-        if (isAlive)
-        {
 
-                StateManager();
-                UnitActions();
-            
+        if (!isAlive)
+        {
+            return;
         }
+
+        StateManager();
+        UnitActions();
     }
 
     private void UnitActions()
     {
         if (unitState == States.farm) FarmMinions();
-        //if (unitState == States.attack) AttackEnemy();
+        //if (unitState == States.attack) AttackStruct();
         if (unitState == States.roam) Roam();
 
     }//------
@@ -109,6 +110,7 @@ public class Minion : DD_BaseObject
     private void StateManager()
     {
         if (waypointNum != 3) return;
+
         //Check if enemy minion in range
         if (Vector3.Distance(currentPosition, nearestMinionPosition) < attackRange)
         {
@@ -119,10 +121,10 @@ public class Minion : DD_BaseObject
         }
 
         //Check if enemy structure is in range
-        /*else if (gameManager.ai.CheckTargetInLineOfSight(currentPosition, targetPosition))
+        else if (gameManager.ai.CheckTargetInLineOfSight(currentPosition, nextStruct.transform.position))
         {
             unitState = States.attack;
-        }*/
+        }
 
         else
         {
@@ -151,6 +153,20 @@ public class Minion : DD_BaseObject
             SendAttack();
         }
     }
+
+    public void AttackEnemy()
+    {
+        if (!isAlive) return;
+
+
+        if (Vector3.Distance(nextStruct.transform.position, currentPosition) < attackRange)
+        {
+            targetPosition = nextStruct.transform.position;
+            //unitState.idle;
+            SendAttack();
+        }
+
+    }//-----
 
     private void SendAttack()
     {

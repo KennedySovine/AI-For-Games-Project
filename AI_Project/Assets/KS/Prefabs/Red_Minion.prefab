@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8116276963658820207}
   - component: {fileID: 5544868209530970589}
   - component: {fileID: 8274379350404298860}
+  - component: {fileID: -9145889337276679703}
   m_Layer: 0
   m_Name: Red_Minion
   m_TagString: RedMinion
@@ -128,17 +129,29 @@ MonoBehaviour:
   unitState: 1
   isPlayerControlled: 0
   targetPosition: {x: 0, y: 0, z: 0}
-  basePosition: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
-  goalPosition: {x: 0, y: 0, z: 0}
   speed: 1
   isMoving: 0
+  waypoints: []
   nearestMinionPosition: {x: -50, y: 50, z: -50}
-  level: 3
-  isStronger: 0
   ammo: 1000
   nearestEnemyPosition: {x: -50, y: 50, z: -50}
-  enemyChaseRange: 20
   attackRange: 10
   attackCoolDown: 1
-  attackPF: {fileID: 0}
+  attackPF: {fileID: 7542795780032822868, guid: aac069fcb5f172f43a45328ef4ea897f, type: 3}
+  damageReduction: 0
+  nextStruct: {fileID: 0}
+--- !u!114 &-9145889337276679703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739006990953359440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ce8205e30f142f0acb37097fb34afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitScript: {fileID: 0}
+  maxHealth: 0

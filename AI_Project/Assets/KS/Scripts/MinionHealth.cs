@@ -20,7 +20,6 @@ public class MinionHealth : MonoBehaviour
     // ---------------------------------------------------------------------
     void FixedUpdate()
     {
-        UpdateHPBar();
     }//-----
 
     void Update()
@@ -33,11 +32,15 @@ public class MinionHealth : MonoBehaviour
     public void Damage(float damage) // Damage Receiver
     {
         unitScript.health -= damage;
+        if (unitScript.health <= 0)
+        {
+            Destroy(gameObject);
+        }
 
     }//-----
 
 
-    private void UpdateHPBar()
+    /*private void UpdateHPBar()
     {
         float currentHealth = unitScript.health;
 
@@ -55,7 +58,7 @@ public class MinionHealth : MonoBehaviour
         if (currentHealth < maxHealth / 4)
             hpBar.GetComponent<Renderer>().material.color = Color.red;
 
-    }//-----
+    }//-----*/
 
 
     // ---------------------------------------------------------------------
