@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minion : DD_BaseObject
-
+public class Spawner : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
