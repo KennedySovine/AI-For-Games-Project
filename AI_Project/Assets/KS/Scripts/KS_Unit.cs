@@ -3,6 +3,7 @@
 // -------------------- David Dorrington, UoB Games, 2023
 // ---------------------------------------------------------------------
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // Enums

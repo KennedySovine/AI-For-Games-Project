@@ -166,22 +166,26 @@ public class Minion : DD_BaseObject
     {
         if (!isMoving)
         {
-
             //Debug.Log(targetPosition);
             GameObject nearestWaypoint = waypoints[waypointNum];
+            if (Vector3.Distance(currentPosition, nearestWaypoint.transform.position) < 0.1f)
+            {
 
-            if (waypointNum !<= 3)
-            {
-                nearestWaypoint = waypoints[waypointNum + 1];
-                targetPosition = nearestWaypoint.transform.position;
-            }
-            else
-            {
-                targetPosition = gameManager.nextStructure(enemyTeam).transform.position;
+                if (waypointNum != 3)
+                {
+                    nearestWaypoint = waypoints[waypointNum + 1];
+                    targetPosition = nearestWaypoint.transform.position;
+                    waypointNum++;
+                }
+                else
+                {
+                    targetPosition = gameManager.nextStructure(enemyTeam).transform.position;
+
+                }
             }
             MoveUnit();
+
         }
-        
     }
 
     private void MoveUnit()

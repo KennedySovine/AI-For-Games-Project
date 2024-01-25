@@ -10,20 +10,19 @@ public class MinionSpawner : MonoBehaviour
     void Start()
     {
         spawnLocation = gameObject.transform.position;
-        InvokeRepeating("spawnMinions", 2f, 15f);
+        StartCoroutine(WaitToSpawn());
     }
 
-    //Spawn 6 minions in
-    void spawnMinions()
+    private IEnumerator WaitToSpawn()
     {
-        for (int i = 0; i < 6; i++) {
-            Instantiate(minionPrefab, spawnLocation, Quaternion.identity);
-            waitToSpawn();
+        while (true)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Instantiate(minionPrefab, spawnLocation, Quaternion.identity);
+                yield return new WaitForSecondsRealtime(1.5F);
+            }
+            yield return new WaitForSecondsRealtime(15.0F);
         }
-    }
-
-    private IEnumerator waitToSpawn()
-    {
-        yield return new WaitForSecondsRealtime(2);
     }
 }
