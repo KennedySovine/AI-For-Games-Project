@@ -32,7 +32,7 @@ public class Turret_Attack : MonoBehaviour
             if (Vector3.Distance(currentPostion, enemyPosition) <= range && lockedOn)
             {
                 //Debug.Log(gameObject + " locked on");
-                sendAttack(enemyPosition);
+                //sendAttack(enemyPosition);
                 if (enemy.GetComponent<DD_UnitHealth>())
                 {
                     enemy.GetComponent<DD_UnitHealth>().Damage(damage);

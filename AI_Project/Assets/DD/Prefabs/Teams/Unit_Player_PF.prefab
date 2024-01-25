@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8515936519193038846}
   - component: {fileID: 5573208990883223886}
   - component: {fileID: 1427460760893361799}
-  - component: {fileID: 4679721092501007960}
   - component: {fileID: 7263510745834353569}
+  - component: {fileID: 8799462079620553400}
   m_Layer: 0
   m_Name: Unit_Player_PF
   m_TagString: Blue
@@ -86,26 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4679721092501007960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214879434611196659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef22d9b6f3422446b97901e6f375f78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSetTarget: {x: 0, y: 0, z: 0}
-  parentTeam: {fileID: 0}
-  squadID: -1
-  squadPattern: 0
-  isSquadLeader: 0
-  isSelected: 0
-  squadLeader: {fileID: 0}
-  useArrayFormation: 0
 --- !u!114 &7263510745834353569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +100,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitScript: {fileID: 0}
   maxHealth: 200
+--- !u!114 &8799462079620553400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214879434611196659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63bc91eddc6074d608c81d17db8a96d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 0
+  health: 100
+  xPos: 0
+  zPos: 0
+  gameManager: {fileID: 0}
+  team: 
+  unitState: 1
+  isPlayerControlled: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  basePosition: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
+  goalPosition: {x: 0, y: 0, z: 0}
+  speed: 1
+  isMoving: 0
+  fleeRange: 20
+  stopRange: 2
+  obstacleAhead: 0
+  nearestMinionPosition: {x: -50, y: 50, z: -50}
+  level: 3
+  ammo: 1000
+  nearestEnemyPosition: {x: -50, y: 50, z: -50}
+  enemyChaseRange: 20
+  attackRange: 10
+  attackCoolDown: 1
+  attackPF: {fileID: 0}
 --- !u!1 &3924097489163737283
 GameObject:
   m_ObjectHideFlags: 0

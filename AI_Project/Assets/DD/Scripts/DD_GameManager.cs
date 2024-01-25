@@ -65,7 +65,8 @@ public class DD_GameManager : MonoBehaviour
     // ---------------------------------------------------------------------
     private void SetInfrastructure()
     {
-       
+        redInfrastructure = GameObject.FindGameObjectsWithTag("Red");
+        blueInfrastructure = GameObject.FindGameObjectsWithTag("Blue");
 
     }//------
 
@@ -74,6 +75,32 @@ public class DD_GameManager : MonoBehaviour
     private void DisplayGameData()
     {
     }//-----
+
+
+    public GameObject nextStructure (string team)
+    {
+        if (team == "Red")
+        {
+            foreach (GameObject structure in redInfrastructure)
+            {
+                if (structure.GetComponent<Structures>().isAlive)
+                {
+                    return structure;
+                }
+            }
+        }
+        else if (team == "Blue")
+        {
+            foreach (GameObject structure in blueInfrastructure)
+            {
+                if (structure.GetComponent<Structures>().isAlive)
+                {
+                    return structure;
+                }
+            }
+        }
+        return null;
+    }
 
 
 

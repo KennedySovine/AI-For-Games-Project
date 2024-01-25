@@ -14,7 +14,6 @@ public class MinionHealth : MonoBehaviour
     void Start()
     {
         unitScript = GetComponentInParent<Minion>();
-        int currentLevel = unitScript.level;
         CreateHPBar();
     }
 

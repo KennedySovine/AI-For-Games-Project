@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Enums
-public enum States { farm, idle, chase, attack, flee, wander, roam }
+public enum States { farm, idle, chase, attack, flee, wander, roam}
 public enum Heading { north, south, east, west}
 
 public class KS_Unit : DD_BaseObject
@@ -115,8 +115,7 @@ public class KS_Unit : DD_BaseObject
         {
             if (gameManager.ai.CheckTargetInLineOfSight(currentPosition, nearestMinionPosition))
             {
-                targetPosition = nearestMinionPosition;
-                unitState = States.chase;
+                unitState = States.farm;
             }
         }
 
@@ -125,7 +124,7 @@ public class KS_Unit : DD_BaseObject
         {
             if (gameManager.ai.CheckTargetInLineOfSight(currentPosition, nearestEnemyPosition))
             {
-                AttackEnemy();
+                unitState = States.chase;
             }
         }
 

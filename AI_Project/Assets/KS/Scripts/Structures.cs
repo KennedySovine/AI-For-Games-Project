@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Structures : MonoBehaviour
 {
-    public bool isAlive = false;
+    public bool isAlive = true;
+    public bool canRegen;
     public int health;
     public int maxHealth;
     public int healthRegeneration;
@@ -18,7 +19,7 @@ public class Structures : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health < maxHealth)
+        if (health < maxHealth && canRegen)
         {
             InvokeRepeating("regenHealth", 0, 1f);
         }
