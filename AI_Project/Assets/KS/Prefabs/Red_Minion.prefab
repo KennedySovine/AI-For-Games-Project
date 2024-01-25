@@ -114,7 +114,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739006990953359440}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2b7d301bbbd34956bb2be6202a5f343, type: 3}
   m_Name: 
@@ -123,3 +123,22 @@ MonoBehaviour:
   health: 100
   xPos: 0
   zPos: 0
+  gameManager: {fileID: 0}
+  team: 
+  unitState: 1
+  isPlayerControlled: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  basePosition: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
+  goalPosition: {x: 0, y: 0, z: 0}
+  speed: 1
+  isMoving: 0
+  nearestMinionPosition: {x: -50, y: 50, z: -50}
+  level: 3
+  isStronger: 0
+  ammo: 1000
+  nearestEnemyPosition: {x: -50, y: 50, z: -50}
+  enemyChaseRange: 20
+  attackRange: 10
+  attackCoolDown: 1
+  attackPF: {fileID: 0}

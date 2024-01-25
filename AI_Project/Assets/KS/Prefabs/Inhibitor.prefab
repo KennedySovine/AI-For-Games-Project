@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7452714753531933323}
   - component: {fileID: 6925026571839817102}
   - component: {fileID: 550347055395046126}
+  - component: {fileID: -2999141411820395156}
   m_Layer: 0
   m_Name: Inhibitor
   m_TagString: Untagged
@@ -110,6 +111,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 041af9d6be7b54e4cbc5136070a39312, type: 3}
+--- !u!114 &-2999141411820395156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4929275889670788566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2de8ef29b474d3bbcdc3c1b7794080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &48040250979066756
 PrefabInstance:
   m_ObjectHideFlags: 0
