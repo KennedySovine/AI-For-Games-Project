@@ -76,7 +76,7 @@ public class DD_Player_Input : MonoBehaviour
                     if (Input.GetMouseButtonDown(1)) // Right Button
                     {
                         rightClickPostion = new((int)rayHit.point.x, (int)rayHit.point.z);
-                       // print("RM - " + rightClickPostion);
+                       print("RM - " + rightClickPostion);
                     }
                 }
             }

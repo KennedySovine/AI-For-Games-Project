@@ -33,5 +33,19 @@ public class DD_Attack : MonoBehaviour
 
     }//----
 
+    /*private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.GetComponent<DD_UnitHealth>())
+        {
+            collision.gameObject.GetComponent<DD_UnitHealth>().Damage(damage);
+        }
+        else if (collision.gameObject.GetComponent<MinionHealth>())
+        {
+            Debug.Log("HIT");
+            collision.gameObject.GetComponent<MinionHealth>().Damage(damage);
+        }
+        Destroy(gameObject);
+    }*/
+
 
 }//==========

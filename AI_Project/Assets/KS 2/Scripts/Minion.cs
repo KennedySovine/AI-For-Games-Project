@@ -94,7 +94,7 @@ public class Minion : DD_BaseObject
 
         if (!isAlive)
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject, true);
         }
 
         StateManager();
@@ -112,9 +112,8 @@ public class Minion : DD_BaseObject
 
     private void StateManager()
     {
-        if (waypointNum != 4) return;
 
-        findEnemyMinions();
+        findNearestMinion();
 
 
         //Check if enemy minion in range
@@ -129,6 +128,11 @@ public class Minion : DD_BaseObject
             unitState = States.attack;
         }
 
+        else if (waypointNum < 4)
+        {
+            return;
+        }
+
         else
         {
             unitState = States.wander;
@@ -139,25 +143,8 @@ public class Minion : DD_BaseObject
 
     public void FarmMinions()
     {
-
         speed = 0;
-        findEnemyMinions();
-
-        //Finds nearest minion
-        foreach (GameObject minion in minions)
-        {
-            if (Vector3.Distance(currentPosition, nearestMinionPosition) < Vector3.Distance(currentPosition, minion.transform.position))
-            {
-                nearestMinion = minion;
-                nearestMinionPosition = nearestMinion.transform.position;
-            }
-        }
-
-        if (Vector3.Distance(currentPosition, nearestMinionPosition) < attackRange)
-        {
-            nearestEnemyPosition = nearestMinion.transform.position;
-            SendAttack(nearestEnemyPosition);
-        }
+        SendAttack(nearestMinionPosition);
     }
 
 
@@ -168,8 +155,9 @@ public class Minion : DD_BaseObject
 
         if (nextAttackTime < Time.time)
         {
-            transform.LookAt(target);
+            Debug.Log("Get here");
             GameObject unitAttack = Instantiate(attackPF, gameObject.transform);
+            transform.LookAt(target);
             unitAttack.transform.SetParent(null);
             unitAttack.GetComponent<DD_Attack>().tag = team;
             unitAttack.transform.position = Vector3.MoveTowards(currentPosition, target, 1);
@@ -215,11 +203,20 @@ public class Minion : DD_BaseObject
 
     }
 
-    private void findEnemyMinions()
+    private void findNearestMinion()
     {
+
         minions = GameObject.FindGameObjectsWithTag(enemyMinions);
         nearestMinion = minions[0];
         nearestMinionPosition = nearestMinion.transform.position;
+        foreach (GameObject minion in minions)
+        {
+            if (Vector3.Distance(currentPosition, nearestMinionPosition) < Vector3.Distance(currentPosition, minion.transform.position))
+            {
+                nearestMinion = minion;
+                nearestMinionPosition = nearestMinion.transform.position;
+            }
+        }
     }
 
     private void MoveToStruct()

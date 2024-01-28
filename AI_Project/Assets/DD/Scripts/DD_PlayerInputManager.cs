@@ -68,7 +68,7 @@ public class DD_PlayerInputManager : MonoBehaviour
     
 
         //if the left or right mouse button clicked
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             // Create Ray cast source and target 
             Ray rayCamToMousePostion = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -76,36 +76,9 @@ public class DD_PlayerInputManager : MonoBehaviour
             // cast Ray 100m and store data in _rh_hit)
             if (Physics.Raycast(rayCamToMousePostion, out RaycastHit rayHit, 100F))
             {
-                // Set Position LM Clicked id on the gameBoard 
-                if (Mathf.Round(rayHit.point.x) > 0 && Mathf.Round(rayHit.point.x) < 100
-                    && Mathf.Round(rayHit.point.z) > 0 && Mathf.Round(rayHit.point.z) < 100)
-                {
-                    if (Input.GetMouseButtonDown(0)) // Left Button                   
-                        leftClickPosition = new((int)rayHit.point.x, (int)rayHit.point.z);
-
-                    if (Input.GetMouseButtonDown(1)) // Right Button            
-                    {
-                        rightClickPosition = new((int)rayHit.point.x, (int)rayHit.point.z);
-                        mouseRDown = true;
-                    }
-                }
-            }
-        }
-
-        if (Input.GetMouseButton(0)) // Left Mouse still held Down
-        {
-            mouseLUP = false;
-            mouseLDown = true;
-            // Create Ray cast source and target 
-            Ray rayCamToMousePostion = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            // cast Ray 100m and store data in _rh_hit)
-            if (Physics.Raycast(rayCamToMousePostion, out RaycastHit rayHit, 100F))
-            {
-                // Set Position LM Clicked id on the gameBoard 
-                if (Mathf.Round(rayHit.point.x) > 0 && Mathf.Round(rayHit.point.x) < 100
-                    && Mathf.Round(rayHit.point.z) > 0 && Mathf.Round(rayHit.point.z) < 100)
-                    leftDownPosition = new((int)rayHit.point.x, (int)rayHit.point.z);
+                rightClickPosition = new((int)rayHit.point.x, (int)rayHit.point.z);
+                mouseRDown = true;
+                print("RM - " + rightClickPosition);
             }
         }
 

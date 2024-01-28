@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 4704646464496823522}
   - component: {fileID: 8577058874419549058}
   - component: {fileID: 8116276963658820207}
-  - component: {fileID: 5544868209530970589}
   - component: {fileID: 8274379350404298860}
   - component: {fileID: -9145889337276679703}
-  - component: {fileID: 7327288841087944727}
+  - component: {fileID: -3808222915249870049}
   m_Layer: 0
   m_Name: Red_Minion
   m_TagString: RedMinion
@@ -87,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5544868209530970589
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1739006990953359440}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: e8ba51a934eb276468729107e5d3143f, type: 3}
 --- !u!114 &8274379350404298860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,30 +133,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitScript: {fileID: 0}
   maxHealth: 0
---- !u!54 &7327288841087944727
-Rigidbody:
+--- !u!64 &-3808222915249870049
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739006990953359440}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 48add65712a68664db1c16a2ac14f5ae, type: 3}

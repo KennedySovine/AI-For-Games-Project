@@ -14,6 +14,8 @@ public class KS_Unit : DD_BaseObject
 {
     // ---------------------------------------------------------------------
     public DD_GameManager gameManager;
+    public DD_PlayerInputManager playerInputManager;
+    private Vector3 lastPosition = Vector3.zero;
     public string team;
     public States unitState = States.idle;
     public bool isPlayerControlled = false;
@@ -43,22 +45,27 @@ public class KS_Unit : DD_BaseObject
     [Header("Combat")]
     public int ammo = 1000;
     public Vector3 nearestEnemyPosition = new(-50, 50, -50);
-    private GameObject nearestEnemy = null;
     public float enemyChaseRange = 20;
     public float attackRange = 10;
     public float attackCoolDown = 1;
     public GameObject attackPF = null;
     private float nextAttackTime = 0;
     private string enemyTeam;
+
+    public GameObject nextStruct;
+
     
 
     // ---------------------------------------------------------------------
     private void Start()
     {
+        nextStruct = gameManager.nextStructure(enemyTeam);
         //Get the unit's team
         team = gameObject.tag;
         // Round off postion to nearest int ands store the current position
         currentPosition = transform.position;
+
+        lastPosition = currentPosition;
 
 
         if (!isPlayerControlled)
@@ -83,102 +90,61 @@ public class KS_Unit : DD_BaseObject
     // ---------------------------------------------------------------------
     private void FixedUpdate()
     {
+        nextStruct = gameManager.nextStructure(enemyTeam);
+        currentPosition = gameObject.transform.position;
         if (isAlive)
         {
-            if (!isMoving)
-            {
                 StateManager();
                 UnitActions();
-            }
-            MoveUnit();
+            
         }
     }//---
 
     // ---------------------------------------------------------------------
     private void UnitActions()
     {
-        if (unitState == States.chase) ChaseDirect(false);
-        if (unitState == States.flee) ChaseDirect(true);
         if (unitState == States.farm) FarmMinions();
-        if (unitState == States.attack) AttackEnemy();
+        if (unitState == States.attack) AttackStruct();
+        if (unitState == States.wander) MoveToStruct();
 
     }//------
 
-
-    // ---------------------------------------------------------------------
     private void StateManager()
     {
-        if (isPlayerControlled) return;
-        if (isMoving) return;
-
-        // Check Minion in Range 
-        if (Vector3.Distance(currentPosition, nearestMinionPosition) < attackRange)
+        if (isPlayerControlled)
         {
-            if (gameManager.ai.CheckTargetInLineOfSight(currentPosition, nearestMinionPosition))
+            if (lastPosition == currentPosition)
+            {
+                lastPosition = new Vector3(playerInputManager.rightClickPosition.x, currentPosition.y, playerInputManager.rightClickPosition.y);
+            }
+            if (currentPosition != lastPosition)
+            {
+                MoveUnit(lastPosition);
+            }
+        }
+        else
+        {
+            //Check if enemy minion in range
+            if (Vector3.Distance(currentPosition, nearestMinionPosition) < attackRange)
             {
                 unitState = States.farm;
             }
-        }
 
-        // Check if enemy is close
-        if (Vector3.Distance(nearestEnemyPosition, currentPosition) < enemyChaseRange)
-        {
-            if (gameManager.ai.CheckTargetInLineOfSight(currentPosition, nearestEnemyPosition))
+            //Check if enemy structure is in range
+            else if (Vector3.Distance(currentPosition, nextStruct.transform.position) < attackRange)
             {
-                unitState = States.chase;
+                unitState = States.attack;
+            }
+
+
+            else
+            {
+                unitState = States.wander;
             }
         }
 
-        // wander if out of range 
-        //if (Vector3.Distance(currentPosition, ) > resourceRange)
-            unitState = States.wander;
 
-        // is the path blocked and not wandering
-        if (unitState != States.wander)
-        {
-            if (obstacleAhead)
-            {
-                unitState = States.roam;
-                obstacleAhead = false;
-            }
-        }
-    }//---
-
-
-
-    //                   ****************   COMBAT ***************************
-    // ---------------------------------------------------------------------
-    public void AttackEnemy()
-    {
-        if (!isAlive) return;
-
-        /*if (!nearestEnemy)
-        {
-            nearestEnemyPosition = new(-50, -50, -50); // out of range
-            unitState = States.wander;
-            return; // no enemy found
-        }
-        //Enemy in Chase Range
-        if (Vector3.Distance(nearestEnemyPosition, currentPosition) < enemyChaseRange && Vector3.Distance(nearestEnemyPosition, currentPosition) > attackRange)
-        {
-            targetPosition = nearestEnemyPosition;
-            unitState = States.chase;
-        }
-        else if (Vector3.Distance(nearestEnemyPosition, currentPosition) < attackRange) // in Attack range
-        {
-            targetPosition = nearestEnemyPosition;
-            unitState = States.idle;
-            SendAttack();
-        }*/
-
-        if (Vector3.Distance(nearestEnemyPosition, currentPosition) < attackRange)
-        {
-            targetPosition = nearestEnemyPosition;
-            //unitState.idle;
-            SendAttack();
-        }
-
-    }//-----
+    }
 
     public void FarmMinions()
     {
@@ -186,7 +152,8 @@ public class KS_Unit : DD_BaseObject
         nearestMinion = minions[0];
         nearestMinionPosition = nearestMinion.transform.position;
 
-        foreach(GameObject minion in minions){
+        foreach (GameObject minion in minions)
+        {
             if (Vector3.Distance(currentPosition, nearestMinionPosition) < Vector3.Distance(currentPosition, minion.transform.position))
             {
                 nearestMinion = minion;
@@ -196,93 +163,69 @@ public class KS_Unit : DD_BaseObject
 
         if (Vector3.Distance(currentPosition, nearestMinionPosition) < attackRange)
         {
-            nearestEnemyPosition = nearestMinion.transform.position;
-            SendAttack();
+            SendAttack(nearestMinionPosition);
         }
     }
 
 
-    private void SendAttack()
+    private void SendAttack(Vector3 target)
     {
         if (!attackPF) return; // no bullet object referenced
+        speed = 0;
 
         if (nextAttackTime < Time.time)
         {
-            transform.LookAt(nearestEnemyPosition);
+            Debug.Log("Get here");
             GameObject unitAttack = Instantiate(attackPF, gameObject.transform);
+            transform.LookAt(target);
             unitAttack.transform.SetParent(null);
             unitAttack.GetComponent<DD_Attack>().tag = team;
+            unitAttack.transform.position = Vector3.MoveTowards(currentPosition, target, 1);
             nextAttackTime = Time.time + attackCoolDown;
         }
     }//-----
 
-
-    // ---------------------------------------------------------------------
-
-
-
-    //                      ****************   MOVEMENT   ***************************
-    // ---------------------------------------------------------------------
-    public void ChaseDirect(bool reverse)
+    private void AttackStruct()
     {
-        /*if (!isMoving) // Move to target if unit is not moving
+        speed = 0;
+        //If its not alive
+        if (!nextStruct.GetComponent<Structures>().isAlive)
         {
-
-            // Find Straight Line to target  ---------------------------
-            float dx = (targetPosition.x - currentPosition.x);
-            float dz = (targetPosition.z - currentPosition.z);
-            float angle = Mathf.Atan2(dx, dz);
-
-            // use Trig to work out which slot is closest to a straight line to target
-            if (!reverse)
-            {
-                if (Mathf.Abs(dx) > 0.1F) nextPosition.x = currentPosition.x + Mathf.Round(1.4F * Mathf.Sin(angle));
-                if (Mathf.Abs(dz) > 0.1F) nextPosition.z = currentPosition.z + Mathf.Round(1.4F * Mathf.Cos(angle));
-            }
-            else
-            {
-                if (Mathf.Abs(dx) > 0.1F) nextPosition.x = currentPosition.x - Mathf.Round(1.4F * Mathf.Sin(angle));
-                if (Mathf.Abs(dz) > 0.1F) nextPosition.z = currentPosition.z - Mathf.Round(1.4F * Mathf.Cos(angle));
-            }
-
-            // Round off next Pos
-            nextPosition = new Vector3((int)Mathf.Round(nextPosition.x), 0, (int)Mathf.Round(nextPosition.z));
-            int newX = (int)Mathf.Round(nextPosition.x);
-            int newZ = (int)Mathf.Round(nextPosition.z);
-
-            // Check if the new postion is on the board and free
-        }*/
-    }//---
-
-
-
-    // ---------------------------------------------------------------------
-    private void Wander()
-    {
-        
-    }//-----
-
-
-    // ---------------------------------------------------------------------
-    private void MoveUnit()
-    {
-        if (isMoving)
-        {
-            // check distance to new position from  current position
-            Vector2 movePos = new(currentPosition.x, currentPosition.z);
-            Vector2 curentRealPos = new(transform.position.x, transform.position.z);
-
-            if (Vector2.Distance(movePos, curentRealPos) > 0.1F) // Move Unit to new slot 10cm from centre
-            {
-                transform.LookAt(currentPosition);
-                transform.Translate(0, 0, speed * Time.deltaTime);
-            }
-            else
-            {
-                //  print("at target, stopping Moving");
-                isMoving = false; // stop moving            
-            }
+            nextStruct = gameManager.nextStructure(enemyTeam);
+            return;
         }
+
+        SendAttack(nextStruct.transform.position);
+    }
+
+
+    private void MoveToStruct()
+    {
+        MoveUnit(nextStruct.transform.position);
+    }
+
+    private bool isBlocked(Vector3 target)
+    {
+        if (Physics.Linecast(currentPosition, target))
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    private void MoveUnit(Vector3 target)
+    {
+        // If object is blocked, move around it
+        /*if (isBlocked(target))
+        {
+            speed = 0;
+            return;
+        }*/
+        speed = 1.5F;
+        Vector3 newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
+        transform.LookAt(targetPosition);
+        transform.position = Vector3.MoveTowards(currentPosition, newTargetPos, speed * Time.deltaTime);
     }//----
 
     public int XPtoLevel(int currentLevel)
