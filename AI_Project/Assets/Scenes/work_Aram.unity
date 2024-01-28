@@ -152,12 +152,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4759179515457967}
+  - {fileID: 1952368250}
+  - {fileID: 650953687}
   - {fileID: 4759179944730287}
   - {fileID: 1484040829}
   - {fileID: 4846845212096622}
-  - {fileID: 1952368250}
-  - {fileID: 650953687}
+  - {fileID: 4759179515457967}
   - {fileID: 990826765}
   - {fileID: 332258448}
   m_Father: {fileID: 0}
@@ -267,6 +267,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9827609}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &62101330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4929275889670788566, guid: 373d75cd47a27478db6716d53c837340, type: 3}
+  m_PrefabInstance: {fileID: 190369075}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &62629925
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,6 +508,10 @@ PrefabInstance:
       propertyPath: canRegen
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2999141411820395156, guid: 373d75cd47a27478db6716d53c837340, type: 3}
+      propertyPath: maxHealth
+      value: 4000
+      objectReference: {fileID: 0}
     - target: {fileID: 4929275889670788566, guid: 373d75cd47a27478db6716d53c837340, type: 3}
       propertyPath: m_Name
       value: RedInhibitor
@@ -631,19 +640,19 @@ MonoBehaviour:
   activeResources: []
   selectedPlayerUnits: []
   redInfrastructure:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 309981494}
+  - {fileID: 1897269928}
+  - {fileID: 62101330}
+  - {fileID: 1923766074}
+  - {fileID: 1703349218}
+  - {fileID: 2069230356}
   blueInfrastructure:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1312799747}
+  - {fileID: 622825397}
+  - {fileID: 2100218271}
+  - {fileID: 1653278565}
+  - {fileID: 614184962}
+  - {fileID: 1714854155}
   LeftTextWindow: {fileID: 0}
 --- !u!114 &229054453
 MonoBehaviour:
@@ -1473,8 +1482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   canRegen: 0
-  health: 0
-  maxHealth: 0
+  health: 1700
+  maxHealth: 1700
   healthRegeneration: 0
 --- !u!1 &688426017
 GameObject:
@@ -1859,12 +1868,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1865080463}
+  - {fileID: 1833812192}
+  - {fileID: 2143513301}
   - {fileID: 1660915822}
   - {fileID: 1502255573}
   - {fileID: 872878220}
-  - {fileID: 1833812192}
-  - {fileID: 2143513301}
+  - {fileID: 1865080463}
   - {fileID: 4476844126326233032}
   - {fileID: 1393100335}
   m_Father: {fileID: 0}
@@ -2810,7 +2819,7 @@ MonoBehaviour:
   isAlive: 1
   canRegen: 0
   health: 0
-  maxHealth: 0
+  maxHealth: 1400
   healthRegeneration: 0
 --- !u!4 &1660915822 stripped
 Transform:
@@ -2877,7 +2886,7 @@ MonoBehaviour:
   isAlive: 1
   canRegen: 0
   health: 0
-  maxHealth: 0
+  maxHealth: 1400
   healthRegeneration: 0
 --- !u!1 &1705865301
 GameObject:
@@ -3244,8 +3253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   canRegen: 0
-  health: 0
-  maxHealth: 0
+  health: 1700
+  maxHealth: 1700
   healthRegeneration: 0
 --- !u!1 &1855985466
 GameObject:
@@ -3453,7 +3462,7 @@ MonoBehaviour:
   isAlive: 1
   canRegen: 0
   health: 0
-  maxHealth: 0
+  maxHealth: 1400
   healthRegeneration: 0
 --- !u!1001 &1952368249
 PrefabInstance:
@@ -3551,8 +3560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   canRegen: 0
-  health: 0
-  maxHealth: 0
+  health: 1700
+  maxHealth: 1700
   healthRegeneration: 0
 --- !u!1 &1966723676
 GameObject:
@@ -3755,8 +3764,8 @@ MonoBehaviour:
   isAlive: 1
   canRegen: 1
   health: 0
-  maxHealth: 0
-  healthRegeneration: 0
+  maxHealth: 5500
+  healthRegeneration: 20
 --- !u!1 &2094964886
 GameObject:
   m_ObjectHideFlags: 0
@@ -3836,6 +3845,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094964886}
   m_CullTransparentMesh: 1
+--- !u!1 &2100218271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4929275889670788566, guid: 373d75cd47a27478db6716d53c837340, type: 3}
+  m_PrefabInstance: {fileID: 4057572362405142299}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2113313406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3996,8 +4010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   canRegen: 0
-  health: 0
-  maxHealth: 0
+  health: 1700
+  maxHealth: 1700
   healthRegeneration: 0
 --- !u!4 &4759179515457967 stripped
 Transform:
@@ -4019,8 +4033,8 @@ MonoBehaviour:
   isAlive: 1
   canRegen: 1
   health: 0
-  maxHealth: 0
-  healthRegeneration: 0
+  maxHealth: 5500
+  healthRegeneration: 20
 --- !u!4 &4759179944730287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6958376801084208347, guid: 373d75cd47a27478db6716d53c837340, type: 3}
@@ -4046,7 +4060,7 @@ MonoBehaviour:
   isAlive: 1
   canRegen: 0
   health: 0
-  maxHealth: 0
+  maxHealth: 1400
   healthRegeneration: 0
 --- !u!1001 &3810887091377935204
 PrefabInstance:

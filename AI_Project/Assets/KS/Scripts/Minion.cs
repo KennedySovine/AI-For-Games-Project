@@ -18,7 +18,7 @@ public class Minion : DD_BaseObject
     public Vector3 currentPosition = Vector3.zero;
 
     [Header("Movement")]
-    public float speed = 2.0F;
+    public float speed = 3F;
     public bool isMoving = false;
     public GameObject[] waypoints;
     private int waypointNum;
@@ -28,18 +28,16 @@ public class Minion : DD_BaseObject
     public Vector3 nearestMinionPosition = new(-50, 50, -50);
     private GameObject nearestMinion = null;
     private string enemyMinions;
+    private GameObject[] minions;
 
     [Header("Combat")]
     public int ammo = 1000;
     public Vector3 nearestEnemyPosition = new(-50, 50, -50);
-    private GameObject nearestEnemy = null;
     public float attackRange = 10;
     public float attackCoolDown = 1;
     public GameObject attackPF = null;
     private float nextAttackTime = 0;
     private string enemyTeam;
-    private string myTeam;
-    private GameObject[] teamMembers;
     public int damageReduction;
 
     public GameObject nextStruct;
@@ -57,21 +55,23 @@ public class Minion : DD_BaseObject
         currentPosition = transform.position;
         isAlive = true;
 
+        nextStruct = gameManager.nextStructure(enemyTeam); //Get the first structure they must move to
+
         unitState = States.roam;
         //Setting base stuff for 
         if (team == ("RedMinion"))
         {
             enemyTeam = "Blue";
-            myTeam = "Red";
-            enemyMinions = "BlueMinions";
+            enemyMinions = "BlueMinion";
             pathing = GameObject.Find("RMPathing");
+            nearestMinionPosition = GameObject.Find("BMP4").transform.position;
         }
         else
         {
             enemyTeam = "Red";
-            myTeam = "Blue";
-            enemyMinions = "RedMinions";
+            enemyMinions = "RedMinion";
             pathing = GameObject.Find("BMPathing");
+            nearestMinionPosition = GameObject.Find("RMP4").transform.position;
         }
 
         Transform parent = pathing.transform;
@@ -90,6 +90,7 @@ public class Minion : DD_BaseObject
         nextStruct = gameManager.nextStructure(enemyTeam);
         currentPosition = transform.position;
 
+
         if (!isAlive)
         {
             return;
@@ -102,8 +103,9 @@ public class Minion : DD_BaseObject
     private void UnitActions()
     {
         if (unitState == States.farm) FarmMinions();
-        //if (unitState == States.attack) AttackStruct();
-        if (unitState == States.roam) Roam();
+        if (unitState == States.attack) AttackStruct();
+        if (unitState == States.roam) WaypointMove();
+        if (unitState == States.wander) MoveToStruct();
 
     }//------
 
@@ -111,33 +113,36 @@ public class Minion : DD_BaseObject
     {
         if (waypointNum != 3) return;
 
+        findEnemyMinions();
+
+
         //Check if enemy minion in range
         if (Vector3.Distance(currentPosition, nearestMinionPosition) < attackRange)
         {
-            if (gameManager.ai.CheckTargetInLineOfSight(currentPosition, nearestMinionPosition))
-            {
-                unitState = States.farm;
-            }
+            unitState = States.farm;
         }
 
         //Check if enemy structure is in range
-        else if (gameManager.ai.CheckTargetInLineOfSight(currentPosition, nextStruct.transform.position))
+        else if (Vector3.Distance(currentPosition, nextStruct.transform.position) < attackRange)
         {
             unitState = States.attack;
         }
 
         else
         {
-            unitState = States.roam;
+            unitState = States.wander;
         }
+
+
     }
 
     public void FarmMinions()
     {
-        GameObject[] minions = GameObject.FindGameObjectsWithTag(enemyMinions);
-        nearestMinion = minions[0];
-        nearestMinionPosition = nearestMinion.transform.position;
+        if (!isAlive) return;
+        speed = 0;
+        findEnemyMinions();
 
+        //Finds nearest minion
         foreach (GameObject minion in minions)
         {
             if (Vector3.Distance(currentPosition, nearestMinionPosition) < Vector3.Distance(currentPosition, minion.transform.position))
@@ -150,7 +155,7 @@ public class Minion : DD_BaseObject
         if (Vector3.Distance(currentPosition, nearestMinionPosition) < attackRange)
         {
             nearestEnemyPosition = nearestMinion.transform.position;
-            SendAttack();
+            SendAttack(nearestEnemyPosition);
         }
     }
 
@@ -158,23 +163,25 @@ public class Minion : DD_BaseObject
     {
         if (!isAlive) return;
 
+        speed = 0;
 
         if (Vector3.Distance(nextStruct.transform.position, currentPosition) < attackRange)
         {
             targetPosition = nextStruct.transform.position;
             //unitState.idle;
-            SendAttack();
+            SendAttack(targetPosition);
         }
 
     }//-----
 
-    private void SendAttack()
+    private void SendAttack(Vector3 target)
     {
         if (!attackPF) return; // no bullet object referenced
+        speed = 0;
 
         if (nextAttackTime < Time.time)
         {
-            transform.LookAt(nearestEnemyPosition);
+            transform.LookAt(target);
             GameObject unitAttack = Instantiate(attackPF, gameObject.transform);
             unitAttack.transform.SetParent(null);
             unitAttack.GetComponent<DD_Attack>().tag = team;
@@ -182,10 +189,21 @@ public class Minion : DD_BaseObject
         }
     }//-----
 
-    private void Roam()
+    private void AttackStruct()
     {
-        if (!isMoving)
+        //If its not alive
+        if (!nextStruct.GetComponent<Structures>().isAlive)
         {
+            nextStruct = gameManager.nextStructure(enemyTeam);
+            return;
+        }
+
+        SendAttack(nextStruct.transform.position);
+    }
+
+    private void WaypointMove()
+    {
+
             //Debug.Log(targetPosition);
             GameObject nearestWaypoint = waypoints[waypointNum];
             if (Vector3.Distance(currentPosition, nearestWaypoint.transform.position) < 0.1f)
@@ -204,13 +222,43 @@ public class Minion : DD_BaseObject
 
                 }
             }
-            MoveUnit();
+            transform.LookAt(targetPosition);
+            transform.position = Vector3.MoveTowards(currentPosition, targetPosition, speed * Time.deltaTime);
+            isMoving = false;
 
-        }
     }
 
-    private void MoveUnit()
+    private void findEnemyMinions()
     {
+        minions = GameObject.FindGameObjectsWithTag(enemyMinions);
+        nearestMinion = minions[0];
+        nearestMinionPosition = nearestMinion.transform.position;
+    }
+
+    private void MoveToStruct()
+    {
+        MoveUnit(nextStruct.transform.position);
+    }
+
+    private bool isBlocked(Vector3 target)
+    {
+        if (Physics.Linecast(currentPosition, target))
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    private void MoveUnit(Vector3 target)
+    {
+        // If object is blocked, move around it
+        if (isBlocked(target))
+        {
+
+        }
+        speed = 3f;
+        Vector3 newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
         transform.LookAt(targetPosition);
         transform.position = Vector3.MoveTowards(currentPosition, targetPosition, speed * Time.deltaTime);
         isMoving = false;

@@ -65,8 +65,8 @@ public class DD_GameManager : MonoBehaviour
     // ---------------------------------------------------------------------
     private void SetInfrastructure()
     {
-        redInfrastructure = GameObject.FindGameObjectsWithTag("Red");
-        blueInfrastructure = GameObject.FindGameObjectsWithTag("Blue");
+        //redInfrastructure = GameObject.FindGameObjectsWithTag("Red");
+        //blueInfrastructure = GameObject.FindGameObjectsWithTag("Blue");
 
     }//------
 
@@ -75,6 +75,11 @@ public class DD_GameManager : MonoBehaviour
     private void DisplayGameData()
     {
     }//-----
+
+    /*private GameObject[] sortStructures(GameObject[] arr)
+    {
+
+    }*/
 
 
     public GameObject nextStructure (string team)

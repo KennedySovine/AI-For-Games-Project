@@ -14,6 +14,7 @@ public class Structures : MonoBehaviour
     void Start()
     {
         isAlive = true;
+        health = maxHealth;
     }
 
     // Update is called once per frame
