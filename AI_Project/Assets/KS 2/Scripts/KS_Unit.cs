@@ -23,12 +23,12 @@ public class KS_Unit : DD_BaseObject
     // Position Variables
     [Header("Unit Positions")]
     public Vector3 targetPosition = Vector3.zero;
-    public Vector3 basePosition = Vector3.zero;
+    public GameObject teamBase;
     public Vector3 currentPosition = Vector3.zero;
     public Vector3 goalPosition = Vector3.zero;
 
     [Header("Movement")]
-    public float speed = 1;
+    public float speed = 3;
     public bool isMoving = false;
     public float fleeRange = 20;
     public float stopRange = 2;
@@ -96,7 +96,7 @@ public class KS_Unit : DD_BaseObject
         nextStruct = gameManager.nextStructure(enemyTeam);
         currentPosition = gameObject.transform.position;
         newPosition = playerInputManager.getRCP();
-        print(newPosition);
+        //print(newPosition);
         if (isAlive)
         {
                 StateManager();

@@ -58,7 +58,7 @@ public class DD_UnitHealth : MonoBehaviour
             //Start a timer
             timeTillRespawn = (unitScript.level * 2) + 4;
             unitScript.isAlive = false;
-            unitScript.currentPosition = unitScript.basePosition;
+            unitScript.currentPosition = unitScript.teamBase.transform.position;
 
 
             // Deselect unit

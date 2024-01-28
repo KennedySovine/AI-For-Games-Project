@@ -14,6 +14,7 @@ public class DD_PlayerInputManager : MonoBehaviour
     public float selectionBorderSize = 50;
 
     // Mouse Select
+    public Vector3 RPC = new(-1,0,  -1);
     public Vector2 leftClickPosition = new(-1, -1);
     public Vector2 rightClickPosition = new(-1, -1);
     public Vector2 leftDownPosition = new(-1, -1);
@@ -65,8 +66,6 @@ public class DD_PlayerInputManager : MonoBehaviour
     private void GetPlayerMouseClick()
     {
 
-    
-
         //if the left or right mouse button clicked
         if (Input.GetMouseButtonDown(1))
         {
@@ -78,7 +77,8 @@ public class DD_PlayerInputManager : MonoBehaviour
             {
                 rightClickPosition = new((int)rayHit.point.x, (int)rayHit.point.z);
                 mouseRDown = true;
-                print("RM - " + rightClickPosition);
+                setRPC(rightClickPosition);
+                //print("RM - " + rightClickPosition);
             }
         }
 
@@ -97,7 +97,14 @@ public class DD_PlayerInputManager : MonoBehaviour
 
     public Vector3 getRCP()
     {
-        return new Vector3(rightClickPosition.x, 0, rightClickPosition.y);
+        print(RPC);
+        return RPC;
+    }
+
+    public void setRPC(Vector2 e)
+    {
+        RPC.x = e.x;
+        RPC.z = e.y;
     }
 
 
