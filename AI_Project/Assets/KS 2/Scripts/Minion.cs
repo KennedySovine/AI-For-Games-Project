@@ -18,7 +18,7 @@ public class Minion : DD_BaseObject
     public Vector3 currentPosition = Vector3.zero;
 
     [Header("Movement")]
-    public float speed = 3F;
+    public float speed = 2F;
     public bool isMoving = false;
     public GameObject[] waypoints;
     private int waypointNum;
@@ -33,7 +33,7 @@ public class Minion : DD_BaseObject
     [Header("Combat")]
     public int ammo = 1000;
     public Vector3 nearestEnemyPosition = new(-50, 50, -50);
-    public float attackRange = 10;
+    public float attackRange = 5;
     public float attackCoolDown = 1;
     public GameObject attackPF = null;
     private float nextAttackTime = 0;
@@ -46,6 +46,7 @@ public class Minion : DD_BaseObject
     // ---------------------------------------------------------------------
     private void Start()
     {
+        speed = 1.5F;
         gameManager = GameObject.Find("GameManager").GetComponent<DD_GameManager>();
         waypoints = new GameObject[4];
         waypointNum = 0;
@@ -93,7 +94,7 @@ public class Minion : DD_BaseObject
 
         if (!isAlive)
         {
-            return;
+            Destroy(gameObject);
         }
 
         StateManager();
@@ -111,7 +112,7 @@ public class Minion : DD_BaseObject
 
     private void StateManager()
     {
-        if (waypointNum != 3) return;
+        if (waypointNum != 4) return;
 
         findEnemyMinions();
 
@@ -138,7 +139,7 @@ public class Minion : DD_BaseObject
 
     public void FarmMinions()
     {
-        if (!isAlive) return;
+
         speed = 0;
         findEnemyMinions();
 
@@ -159,20 +160,6 @@ public class Minion : DD_BaseObject
         }
     }
 
-    public void AttackEnemy()
-    {
-        if (!isAlive) return;
-
-        speed = 0;
-
-        if (Vector3.Distance(nextStruct.transform.position, currentPosition) < attackRange)
-        {
-            targetPosition = nextStruct.transform.position;
-            //unitState.idle;
-            SendAttack(targetPosition);
-        }
-
-    }//-----
 
     private void SendAttack(Vector3 target)
     {
@@ -185,12 +172,14 @@ public class Minion : DD_BaseObject
             GameObject unitAttack = Instantiate(attackPF, gameObject.transform);
             unitAttack.transform.SetParent(null);
             unitAttack.GetComponent<DD_Attack>().tag = team;
+            unitAttack.transform.position = Vector3.MoveTowards(currentPosition, target, 1);
             nextAttackTime = Time.time + attackCoolDown;
         }
     }//-----
 
     private void AttackStruct()
     {
+        speed = 0;
         //If its not alive
         if (!nextStruct.GetComponent<Structures>().isAlive)
         {
@@ -209,7 +198,7 @@ public class Minion : DD_BaseObject
             if (Vector3.Distance(currentPosition, nearestWaypoint.transform.position) < 0.1f)
             {
 
-                if (waypointNum != 3)
+                if (waypointNum < 3)
                 {
                     nearestWaypoint = waypoints[waypointNum + 1];
                     targetPosition = nearestWaypoint.transform.position;
@@ -222,9 +211,7 @@ public class Minion : DD_BaseObject
 
                 }
             }
-            transform.LookAt(targetPosition);
-            transform.position = Vector3.MoveTowards(currentPosition, targetPosition, speed * Time.deltaTime);
-            isMoving = false;
+        MoveUnit(targetPosition);
 
     }
 
@@ -253,14 +240,14 @@ public class Minion : DD_BaseObject
     private void MoveUnit(Vector3 target)
     {
         // If object is blocked, move around it
-        if (isBlocked(target))
+        /*if (isBlocked(target))
         {
-
-        }
-        speed = 3f;
+            speed = 0;
+            return;
+        }*/
+        speed = 1.5F;
         Vector3 newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
         transform.LookAt(targetPosition);
-        transform.position = Vector3.MoveTowards(currentPosition, targetPosition, speed * Time.deltaTime);
-        isMoving = false;
+        transform.position = Vector3.MoveTowards(currentPosition, newTargetPos, speed * Time.deltaTime);
     }//----
 }

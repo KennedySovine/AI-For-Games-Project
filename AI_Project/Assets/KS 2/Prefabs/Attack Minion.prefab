@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 3269817745297302136}
   - component: {fileID: 5169680640216595163}
   - component: {fileID: 6545316382098275986}
-  - component: {fileID: 2098952104424070284}
-  - component: {fileID: 1889368923788782976}
-  - component: {fileID: 392659201243194800}
+  - component: {fileID: 492754055348276222}
+  - component: {fileID: -643170694781157740}
+  - component: {fileID: 5874337391949296348}
   m_Layer: 0
-  m_Name: Attack
+  m_Name: Attack Minion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2098952104424070284
+--- !u!114 &492754055348276222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,14 +95,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7542795780032822868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 799b7ae0c046dd34b90a9f68158d09f6, type: 3}
+  m_Script: {fileID: 11500000, guid: f7fb58f43cfb849eaa8d0d96e4d0d077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 12
-  speed: 10
+  range: 0
+  speed: 3
   damage: 30
   teamID: -1
---- !u!54 &1889368923788782976
+--- !u!54 &-643170694781157740
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,7 +110,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7542795780032822868}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -129,7 +129,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &392659201243194800
+--- !u!135 &5874337391949296348
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

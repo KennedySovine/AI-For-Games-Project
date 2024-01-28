@@ -14,7 +14,7 @@ public class MinionHealth : MonoBehaviour
     void Start()
     {
         unitScript = GetComponentInParent<Minion>();
-        CreateHPBar();
+        //CreateHPBar();
     }
 
     // ---------------------------------------------------------------------
@@ -24,7 +24,7 @@ public class MinionHealth : MonoBehaviour
 
     void Update()
     {
-
+        //UpdateHPBar();
     }
 
 
@@ -34,7 +34,7 @@ public class MinionHealth : MonoBehaviour
         unitScript.health -= damage;
         if (unitScript.health <= 0)
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject, true);
         }
 
     }//-----
@@ -58,7 +58,7 @@ public class MinionHealth : MonoBehaviour
         if (currentHealth < maxHealth / 4)
             hpBar.GetComponent<Renderer>().material.color = Color.red;
 
-    }//-----*/
+    }//-----
 
 
     // ---------------------------------------------------------------------
@@ -68,5 +68,5 @@ public class MinionHealth : MonoBehaviour
         hpBar.transform.position = new(transform.position.x, 1.5f, transform.position.z);
         hpBar.transform.localScale = new(1, 0.1f, 0.1f);
         hpBar.transform.SetParent(transform);
-    }//----
+    }//----*/
 }
