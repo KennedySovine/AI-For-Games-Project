@@ -139,7 +139,7 @@ MonoBehaviour:
   enemyChaseRange: 20
   attackRange: 10
   attackCoolDown: 1
-  attackPF: {fileID: 0}
+  attackPF: {fileID: 7542795780032822868, guid: aac069fcb5f172f43a45328ef4ea897f, type: 3}
   nextStruct: {fileID: 0}
 --- !u!54 &2086049655172538664
 Rigidbody:

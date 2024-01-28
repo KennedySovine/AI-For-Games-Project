@@ -117,6 +117,7 @@ MonoBehaviour:
   xPos: 0
   zPos: 0
   gameManager: {fileID: 0}
+  playerInputManager: {fileID: 0}
   team: 
   unitState: 1
   isPlayerControlled: 0
@@ -136,7 +137,8 @@ MonoBehaviour:
   enemyChaseRange: 20
   attackRange: 10
   attackCoolDown: 1
-  attackPF: {fileID: 0}
+  attackPF: {fileID: 7542795780032822868, guid: aac069fcb5f172f43a45328ef4ea897f, type: 3}
+  nextStruct: {fileID: 0}
 --- !u!1 &3924097489163737283
 GameObject:
   m_ObjectHideFlags: 0

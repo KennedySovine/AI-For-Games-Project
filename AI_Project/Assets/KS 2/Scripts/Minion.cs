@@ -244,7 +244,7 @@ public class Minion : DD_BaseObject
         }*/
         speed = 1.5F;
         Vector3 newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
-        transform.LookAt(targetPosition);
+        transform.LookAt(newTargetPos);
         transform.position = Vector3.MoveTowards(currentPosition, newTargetPos, speed * Time.deltaTime);
     }//----
 }

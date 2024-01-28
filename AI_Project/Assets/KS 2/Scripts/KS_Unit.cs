@@ -15,7 +15,7 @@ public class KS_Unit : DD_BaseObject
     // ---------------------------------------------------------------------
     public DD_GameManager gameManager;
     public DD_PlayerInputManager playerInputManager;
-    private Vector3 lastPosition = Vector3.zero;
+    private Vector3 newPosition = Vector3.zero;
     public string team;
     public States unitState = States.idle;
     public bool isPlayerControlled = false;
@@ -59,13 +59,15 @@ public class KS_Unit : DD_BaseObject
     // ---------------------------------------------------------------------
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<DD_GameManager>();
+        playerInputManager = GameObject.Find("GameManager").GetComponent<DD_PlayerInputManager>();
         nextStruct = gameManager.nextStructure(enemyTeam);
         //Get the unit's team
         team = gameObject.tag;
         // Round off postion to nearest int ands store the current position
         currentPosition = transform.position;
 
-        lastPosition = currentPosition;
+        newPosition = currentPosition;
 
 
         if (!isPlayerControlled)
@@ -90,8 +92,11 @@ public class KS_Unit : DD_BaseObject
     // ---------------------------------------------------------------------
     private void FixedUpdate()
     {
+ 
         nextStruct = gameManager.nextStructure(enemyTeam);
         currentPosition = gameObject.transform.position;
+        newPosition = playerInputManager.getRCP();
+        print(newPosition);
         if (isAlive)
         {
                 StateManager();
@@ -106,6 +111,7 @@ public class KS_Unit : DD_BaseObject
         if (unitState == States.farm) FarmMinions();
         if (unitState == States.attack) AttackStruct();
         if (unitState == States.wander) MoveToStruct();
+        if (unitState == States.idle) PlayerControl();
 
     }//------
 
@@ -113,14 +119,7 @@ public class KS_Unit : DD_BaseObject
     {
         if (isPlayerControlled)
         {
-            if (lastPosition == currentPosition)
-            {
-                lastPosition = new Vector3(playerInputManager.rightClickPosition.x, currentPosition.y, playerInputManager.rightClickPosition.y);
-            }
-            if (currentPosition != lastPosition)
-            {
-                MoveUnit(lastPosition);
-            }
+            unitState = States.idle;
         }
         else
         {
@@ -198,6 +197,20 @@ public class KS_Unit : DD_BaseObject
         SendAttack(nextStruct.transform.position);
     }
 
+    private void PlayerControl()
+    {
+        if (newPosition == currentPosition)
+        {
+            speed = 0;
+        }
+        else
+        {
+            speed = 1;
+
+            MoveUnit(newPosition);
+        }
+    }
+
 
     private void MoveToStruct()
     {
@@ -222,9 +235,8 @@ public class KS_Unit : DD_BaseObject
             speed = 0;
             return;
         }*/
-        speed = 1.5F;
         Vector3 newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
-        transform.LookAt(targetPosition);
+        transform.LookAt(newTargetPos);
         transform.position = Vector3.MoveTowards(currentPosition, newTargetPos, speed * Time.deltaTime);
     }//----
 

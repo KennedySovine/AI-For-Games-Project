@@ -95,5 +95,10 @@ public class DD_PlayerInputManager : MonoBehaviour
 
     }//------
 
+    public Vector3 getRCP()
+    {
+        return new Vector3(rightClickPosition.x, 0, rightClickPosition.y);
+    }
+
 
 }//==========
