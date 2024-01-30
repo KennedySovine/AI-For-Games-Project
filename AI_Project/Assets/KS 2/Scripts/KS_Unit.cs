@@ -7,8 +7,8 @@ using TMPro;
 using UnityEngine;
 
 // Enums
-public enum States { farm, idle, chase, attack, flee, wander, roam}
-public enum Heading { north, south, east, west}
+public enum States { farm, idle, chase, attack, flee, wander, roam }
+public enum Heading { north, south, east, west }
 
 public class KS_Unit : DD_BaseObject
 {
@@ -54,7 +54,7 @@ public class KS_Unit : DD_BaseObject
 
     public GameObject nextStruct;
 
-    
+
 
     // ---------------------------------------------------------------------
     private void Start()
@@ -92,16 +92,16 @@ public class KS_Unit : DD_BaseObject
     // ---------------------------------------------------------------------
     private void FixedUpdate()
     {
- 
+
         nextStruct = gameManager.nextStructure(enemyTeam);
         currentPosition = gameObject.transform.position;
         newPosition = playerInputManager.getRCP();
         //print(newPosition);
         if (isAlive)
         {
-                StateManager();
-                UnitActions();
-            
+            StateManager();
+            UnitActions();
+
         }
     }//---
 
@@ -117,10 +117,7 @@ public class KS_Unit : DD_BaseObject
 
     private void StateManager()
     {
-        if (isPlayerControlled)
-        {
-            unitState = States.idle;
-        }
+        if (isPlayerControlled) return;
         else
         {
             //Check if enemy minion in range
