@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitScript: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 259
 --- !u!64 &-3808222915249870049
 MeshCollider:
   m_ObjectHideFlags: 0

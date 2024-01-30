@@ -154,4 +154,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitScript: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 259

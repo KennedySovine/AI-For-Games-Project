@@ -23,6 +23,7 @@ public class Minion : DD_BaseObject
     public GameObject[] waypoints;
     private int waypointNum;
     private GameObject pathing;
+    private Vector3 originalRotation;
 
     [Header("EXP")]
     public Vector3 nearestMinionPosition = new(-50, 50, -50);
@@ -90,13 +91,7 @@ public class Minion : DD_BaseObject
     {
         nextStruct = gameManager.nextStructure(enemyTeam);
         currentPosition = transform.position;
-
-
-        if (!isAlive)
-        {
-            DestroyImmediate(gameObject, true);
-        }
-
+        findNearest();
         StateManager();
         UnitActions();
     }
@@ -113,12 +108,10 @@ public class Minion : DD_BaseObject
     private void StateManager()
     {
 
-        findNearestMinion();
-
-
         //Check if enemy minion in range
         if (Vector3.Distance(currentPosition, nearestMinionPosition) < attackRange)
         {
+            Debug.Log("Here");
             unitState = States.farm;
         }
 
@@ -153,13 +146,12 @@ public class Minion : DD_BaseObject
         if (!attackPF) return; // no bullet object referenced
         speed = 0;
 
-        if (nextAttackTime < Time.time)
-        {
-            Debug.Log("Get here");
+        if (nextAttackTime < Time.time) { 
             GameObject unitAttack = Instantiate(attackPF, gameObject.transform);
             transform.LookAt(target);
             unitAttack.transform.SetParent(null);
-            unitAttack.GetComponent<DD_Attack>().tag = team;
+            unitAttack.GetComponent<Attack_Minion>().range = attackRange;
+            //unitAttack.GetComponent<Attack_Minion>().tag = team;
             unitAttack.transform.position = Vector3.MoveTowards(currentPosition, target, 1);
             nextAttackTime = Time.time + attackCoolDown;
         }
@@ -169,18 +161,17 @@ public class Minion : DD_BaseObject
     {
         speed = 0;
         //If its not alive
-        if (!nextStruct.GetComponent<Structures>().isAlive)
+        /*if (!nextStruct.GetComponent<Structures>().isAlive)
         {
             nextStruct = gameManager.nextStructure(enemyTeam);
             return;
-        }
-
+        }*/
+        //Debug.Log(nextStruct.transform.position);
         SendAttack(nextStruct.transform.position);
     }
 
     private void WaypointMove()
     {
-
             //Debug.Log(targetPosition);
             GameObject nearestWaypoint = waypoints[waypointNum];
             if (Vector3.Distance(currentPosition, nearestWaypoint.transform.position) < 0.1f)
@@ -191,7 +182,7 @@ public class Minion : DD_BaseObject
                     nearestWaypoint = waypoints[waypointNum + 1];
                     targetPosition = nearestWaypoint.transform.position;
                     waypointNum++;
-                }
+                }   
                 else
                 {
                     GameObject nextStruct = gameManager.nextStructure(enemyTeam);
@@ -203,9 +194,8 @@ public class Minion : DD_BaseObject
 
     }
 
-    private void findNearestMinion()
+    private void findNearest()
     {
-
         minions = GameObject.FindGameObjectsWithTag(enemyMinions);
         nearestMinion = minions[0];
         nearestMinionPosition = nearestMinion.transform.position;
@@ -233,16 +223,26 @@ public class Minion : DD_BaseObject
         return false;
     }
 
+    private IEnumerator moveAround(Vector3 target)
+    {
+        while (isBlocked(target))
+        {
+            transform.Rotate(new Vector3(0, 1, 0));
+        }
+        gameObject.transform.position = transform.forward * speed;
+        transform.Rotate(originalRotation);
+        yield return new WaitForSecondsRealtime(2);
+        transform.LookAt(target);
+    }
+
 
     private void MoveUnit(Vector3 target)
     {
         // If object is blocked, move around it
-        /*if (isBlocked(target))
+        /*while (isBlocked(target))
         {
-            speed = 0;
-            return;
+            moveAround(target);
         }*/
-        speed = 1.5F;
         Vector3 newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
         transform.LookAt(newTargetPos);
         transform.position = Vector3.MoveTowards(currentPosition, newTargetPos, speed * Time.deltaTime);
