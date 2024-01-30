@@ -130,6 +130,8 @@ public class KS_Unit : DD_BaseObject
         {
             unitState = States.attack;
         }
+
+        //Attack enemy if in range
         if (Vector3.Distance(currentPosition, nearestEnemyPosition) < attackRange)
         {
             unitState = States.enemy;

@@ -9,12 +9,6 @@ public class PCUnit : MonoBehaviour
     private KS_Unit unitScript = null;
     public Vector3 playerSetTarget = Vector3.zero;
 
-    // squad
-    [Header("Squad Stuff")]
-    public int squadID = -1;
-    public int squadPattern;
-    public bool isSquadLeader;
-
     private GameObject highlight;
     public bool isSelected = false;
 
