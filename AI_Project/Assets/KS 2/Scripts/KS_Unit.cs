@@ -214,15 +214,16 @@ public class KS_Unit : DD_BaseObject
     public void MoveUnit(Vector3 target)
     {
         Vector3 newTargetPos;
-        if (ai.isBlocked(currentPosition, target))
+        /*if (ai.isBlocked(currentPosition, target))
         {
             newTargetPos = ai.nearestWPPosition(currentPosition);
         }
         else
         {
             newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
-        }
-        //newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
+        }*/
+        ai.isBlocked(gameObject);
+        newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
         //print(newTargetPos);
         transform.LookAt(newTargetPos);
         transform.position = Vector3.MoveTowards(currentPosition, newTargetPos, speed * Time.deltaTime);
