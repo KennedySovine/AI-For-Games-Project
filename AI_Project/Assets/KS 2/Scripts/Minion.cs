@@ -209,26 +209,9 @@ public class Minion : DD_BaseObject
         return false;
     }
 
-    private IEnumerator moveAround(Vector3 target)
-    {
-        while (isBlocked(target))
-        {
-            transform.Rotate(new Vector3(0, 1, 0));
-        }
-        gameObject.transform.position = transform.forward * speed;
-        transform.Rotate(originalRotation);
-        yield return new WaitForSecondsRealtime(2);
-        transform.LookAt(target);
-    }
-
 
     private void MoveUnit(Vector3 target)
     {
-        // If object is blocked, move around it
-        /*while (isBlocked(target))
-        {
-            moveAround(target);
-        }*/
         Vector3 newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
         transform.LookAt(newTargetPos);
         transform.position = Vector3.MoveTowards(currentPosition, newTargetPos, speed * Time.deltaTime);

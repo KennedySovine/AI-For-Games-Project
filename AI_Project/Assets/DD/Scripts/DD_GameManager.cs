@@ -159,28 +159,6 @@ public class DD_GameManager : MonoBehaviour
                 go.GetComponent<KS_Unit>().unitState = States.wander;
             }
         }
-        /*if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            foreach (GameObject go in activeUnits)
-            {
-                go.GetComponent<KS_Unit>().unitState = States.wander;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            foreach (GameObject go in activeUnits)
-            {
-                go.GetComponent<KS_Unit>().unitState = States.chase;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            foreach (GameObject go in activeUnits)
-            {
-                go.GetComponent<KS_Unit>().unitState = States.flee;
-            }
-        }*/
 
     }
 
