@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3131376118180441894}
   - component: {fileID: 3150852705518945230}
   - component: {fileID: -2166500633855209198}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Blue_Minion
   m_TagString: BlueMinion
   m_Icon: {fileID: 0}

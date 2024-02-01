@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2086049655172538664}
   - component: {fileID: -9041107521742388979}
   - component: {fileID: 7057444432521448220}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Unit_Player_PF
   m_TagString: Blue
   m_Icon: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   zPos: 0
   gameManager: {fileID: 0}
   playerInputManager: {fileID: 0}
+  ai: {fileID: 0}
   team: 
   unitState: 1
   isPlayerControlled: 0
@@ -134,6 +135,7 @@ MonoBehaviour:
   stopRange: 2
   obstacleAhead: 0
   originalRotation: {x: 0, y: 0, z: 0}
+  WP: {x: 0, y: 0, z: 0}
   nearestMinionPosition: {x: -50, y: 50, z: -50}
   level: 3
   ammo: 1000
@@ -166,7 +168,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -206,9 +208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSetTarget: {x: 0, y: 0, z: 0}
-  squadID: -1
-  squadPattern: 0
-  isSquadLeader: 0
   isSelected: 0
 --- !u!1 &3924097489163737283
 GameObject:
@@ -222,7 +221,7 @@ GameObject:
   - component: {fileID: 4198115176977574217}
   - component: {fileID: 4462087386074089416}
   - component: {fileID: 883829913437190335}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

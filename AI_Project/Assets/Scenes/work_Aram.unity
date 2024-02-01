@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 9827613}
   - component: {fileID: 9827612}
   - component: {fileID: 9827611}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RMP2
   m_TagString: Waypoints
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 20784880}
   - component: {fileID: 20784879}
   - component: {fileID: 20784878}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (3)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -301,9 +301,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -365,12 +365,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20784877}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.84, y: -0.57, z: 2.12}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.3900003, y: 0, z: -59.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &62101330 stripped
 GameObject:
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 77037392}
   - component: {fileID: 77037391}
   - component: {fileID: 77037390}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (7)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -516,9 +516,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -580,12 +580,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77037389}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.45, y: -0.57, z: 61.93}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &189115156
 GameObject:
@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 189115159}
   - component: {fileID: 189115158}
   - component: {fileID: 189115161}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RMP1
   m_TagString: Waypoints
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ GameObject:
   - component: {fileID: 238293846}
   - component: {fileID: 238293845}
   - component: {fileID: 238293844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RMP3
   m_TagString: Waypoints
   m_Icon: {fileID: 0}
@@ -1139,7 +1139,7 @@ GameObject:
   - component: {fileID: 286431640}
   - component: {fileID: 286431639}
   - component: {fileID: 286431638}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RMP4
   m_TagString: Waypoints
   m_Icon: {fileID: 0}
@@ -1356,7 +1356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 368301339}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RMPathing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1461,7 +1461,7 @@ GameObject:
   - component: {fileID: 552985570}
   - component: {fileID: 552985569}
   - component: {fileID: 552985568}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (6)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -1483,9 +1483,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1547,12 +1547,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552985567}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.45, y: -0.57, z: 34.43}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -27.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &579565341
 PrefabInstance:
@@ -1631,7 +1631,7 @@ GameObject:
   - component: {fileID: 595040729}
   - component: {fileID: 595040728}
   - component: {fileID: 595040727}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BMP2
   m_TagString: Waypoints
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   - component: {fileID: 681067279}
   - component: {fileID: 681067278}
   - component: {fileID: 681067277}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (1)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -2094,9 +2094,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2158,12 +2158,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681067276}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.74, y: -0.57, z: -19.18}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.29, y: 0, z: -81.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &688426017
 GameObject:
@@ -2245,7 +2245,7 @@ GameObject:
   - component: {fileID: 697496915}
   - component: {fileID: 697496914}
   - component: {fileID: 697496913}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (2)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -2267,9 +2267,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2331,12 +2331,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697496912}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76, y: -0.57, z: -8.6}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.31, y: 0, z: -70.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &701066037
 GameObject:
@@ -2976,7 +2976,7 @@ GameObject:
   - component: {fileID: 1081741219}
   - component: {fileID: 1081741218}
   - component: {fileID: 1081741217}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (9)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -2998,9 +2998,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3063,11 +3063,11 @@ Transform:
   m_GameObject: {fileID: 1081741216}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99997467, z: -0, w: -0.0071172044}
-  m_LocalPosition: {x: 12.616581, y: -0.57, z: 115.540695}
+  m_LocalPosition: {x: 13.066581, y: 0, z: 53.610695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 180.816, z: 0}
 --- !u!1001 &1086918263
 PrefabInstance:
@@ -3138,7 +3138,7 @@ GameObject:
   - component: {fileID: 1090959561}
   - component: {fileID: 1090959560}
   - component: {fileID: 1090959559}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (10)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -3160,9 +3160,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -3225,11 +3225,11 @@ Transform:
   m_GameObject: {fileID: 1090959558}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99997467, z: -0, w: -0.0071172044}
-  m_LocalPosition: {x: 0.48846507, y: -0.57, z: 105.222305}
+  m_LocalPosition: {x: 0.93846506, y: 0, z: 43.292305}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 180.816, z: 0}
 --- !u!1001 &1151632018
 PrefabInstance:
@@ -3639,7 +3639,7 @@ GameObject:
   - component: {fileID: 1333359519}
   - component: {fileID: 1333359518}
   - component: {fileID: 1333359517}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BMP3
   m_TagString: Waypoints
   m_Icon: {fileID: 0}
@@ -3732,6 +3732,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333359515}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1350437042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1350437043}
+  m_Layer: 0
+  m_Name: MWP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1350437043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350437042}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.45, y: -0.57, z: 61.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1646938357}
+  - {fileID: 1546395221}
+  - {fileID: 681067280}
+  - {fileID: 1081741220}
+  - {fileID: 697496916}
+  - {fileID: 1090959562}
+  - {fileID: 20784881}
+  - {fileID: 1836092976}
+  - {fileID: 1785741715}
+  - {fileID: 1695854061}
+  - {fileID: 1522982127}
+  - {fileID: 1932428588}
+  - {fileID: 552985571}
+  - {fileID: 77037393}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393100334
 GameObject:
   m_ObjectHideFlags: 0
@@ -3975,7 +4020,7 @@ GameObject:
   - component: {fileID: 1522982126}
   - component: {fileID: 1522982125}
   - component: {fileID: 1522982124}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (5)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -3997,9 +4042,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4061,12 +4106,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522982123}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.55, y: -0.57, z: 26.82}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.1000004, y: 0, z: -35.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1529792874
 PrefabInstance:
@@ -4137,7 +4182,7 @@ GameObject:
   - component: {fileID: 1546395220}
   - component: {fileID: 1546395219}
   - component: {fileID: 1546395218}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (8)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -4159,9 +4204,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4224,11 +4269,11 @@ Transform:
   m_GameObject: {fileID: 1546395217}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99997467, z: -0, w: -0.0071172044}
-  m_LocalPosition: {x: 13.14, y: -0.57, z: 152.32}
+  m_LocalPosition: {x: 13.59, y: 0, z: 90.39001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 180.816, z: 0}
 --- !u!1 &1628046443
 GameObject:
@@ -4346,7 +4391,7 @@ GameObject:
   - component: {fileID: 1646938356}
   - component: {fileID: 1646938355}
   - component: {fileID: 1646938354}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -4368,9 +4413,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4432,12 +4477,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646938353}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.74, y: -0.57, z: -49.02}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.29, y: 0, z: -110.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1653278565 stripped
 GameObject:
@@ -4518,7 +4563,7 @@ GameObject:
   - component: {fileID: 1695854060}
   - component: {fileID: 1695854059}
   - component: {fileID: 1695854058}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (12)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -4540,9 +4585,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4605,11 +4650,11 @@ Transform:
   m_GameObject: {fileID: 1695854057}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99997467, z: -0, w: -0.0071172044}
-  m_LocalPosition: {x: -0.22, y: -0.57, z: 81.45}
+  m_LocalPosition: {x: 0.22999999, y: 0, z: 19.519997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 180.816, z: 0}
 --- !u!1 &1703349218 stripped
 GameObject:
@@ -4646,7 +4691,7 @@ GameObject:
   - component: {fileID: 1705865304}
   - component: {fileID: 1705865303}
   - component: {fileID: 1705865306}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BMP1
   m_TagString: Waypoints
   m_Icon: {fileID: 0}
@@ -4828,7 +4873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1716783392}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BMPathing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4976,7 +5021,7 @@ GameObject:
   - component: {fileID: 1785741714}
   - component: {fileID: 1785741713}
   - component: {fileID: 1785741712}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (4)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -4998,9 +5043,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5062,12 +5107,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785741711}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: -0.57, z: 15.18}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.060000002, y: 0, z: -46.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1833812191
 PrefabInstance:
@@ -5196,7 +5241,7 @@ GameObject:
   - component: {fileID: 1836092975}
   - component: {fileID: 1836092974}
   - component: {fileID: 1836092973}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (11)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -5218,9 +5263,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5283,11 +5328,11 @@ Transform:
   m_GameObject: {fileID: 1836092972}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99997467, z: -0, w: -0.0071172044}
-  m_LocalPosition: {x: 7.4151354, y: -0.57, z: 94.40261}
+  m_LocalPosition: {x: 7.865135, y: 0, z: 32.47261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 180.816, z: 0}
 --- !u!1 &1855985466
 GameObject:
@@ -5509,7 +5554,7 @@ GameObject:
   - component: {fileID: 1932428587}
   - component: {fileID: 1932428586}
   - component: {fileID: 1932428585}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MovementWP (13)
   m_TagString: MoveWP
   m_Icon: {fileID: 0}
@@ -5531,9 +5576,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -5596,11 +5641,11 @@ Transform:
   m_GameObject: {fileID: 1932428584}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99997467, z: -0, w: -0.0071172044}
-  m_LocalPosition: {x: 5.773654, y: -0.57, z: 69.723495}
+  m_LocalPosition: {x: 6.223654, y: 0, z: 7.793495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1350437043}
   m_LocalEulerAnglesHint: {x: 0, y: 180.816, z: 0}
 --- !u!1 &1934265152 stripped
 GameObject:
@@ -5807,7 +5852,7 @@ GameObject:
   - component: {fileID: 2068938737}
   - component: {fileID: 2068938736}
   - component: {fileID: 2068938735}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BMP4
   m_TagString: Waypoints
   m_Icon: {fileID: 0}
@@ -6515,17 +6560,4 @@ SceneRoots:
   - {fileID: 1159500933}
   - {fileID: 1086918263}
   - {fileID: 1529792874}
-  - {fileID: 1646938357}
-  - {fileID: 1546395221}
-  - {fileID: 681067280}
-  - {fileID: 1081741220}
-  - {fileID: 697496916}
-  - {fileID: 1090959562}
-  - {fileID: 20784881}
-  - {fileID: 1836092976}
-  - {fileID: 1785741715}
-  - {fileID: 1695854061}
-  - {fileID: 1522982127}
-  - {fileID: 1932428588}
-  - {fileID: 552985571}
-  - {fileID: 77037393}
+  - {fileID: 1350437043}

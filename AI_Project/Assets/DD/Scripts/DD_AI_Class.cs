@@ -28,31 +28,27 @@ public class DD_AI_Class : MonoBehaviour
 
         foreach (GameObject WP in movementWaypoints)
         {
-            if (Vector3.Distance(currentPos, nearestWP) < Vector3.Distance(currentPos, WP.transform.position))
+            if (Vector3.Distance(currentPos, nearestWP) > Vector3.Distance(currentPos, WP.transform.position))
             {
-                nearestWP = WP.transform.position;
+                if (Vector3.Distance(WP.transform.position, currentPos) > 3.0F)
+                {
+                    nearestWP = WP.transform.position;
+                }
             }
         }
         return nearestWP;
     }
 
-    /*public bool isBlocked(Vector3 currentPos, Vector3 target)
-    {
-        if (Physics.Linecast(currentPos, target))
-        {
-            return true;
-        }
-        return false;
-    }*/
-
     public bool isBlocked(GameObject obj)
     {
         RaycastHit hit;
+        LayerMask mask = 1 << 5;
+        mask = ~mask;
         Vector3 rad = obj.GetComponent<Renderer>().bounds.size;
         float radius = rad.x / 2;
 
-        if (Physics.SphereCast(obj.transform.position, radius , transform.forward, out hit, 5)){
-            print(hit);
+        if (Physics.SphereCast(obj.transform.position, radius , transform.forward, out hit, 5, mask)){
+            //print(hit);
             return true;
         }
         return false;

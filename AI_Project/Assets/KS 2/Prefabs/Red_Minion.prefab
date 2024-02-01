@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8274379350404298860}
   - component: {fileID: -9145889337276679703}
   - component: {fileID: -3808222915249870049}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Red_Minion
   m_TagString: RedMinion
   m_Icon: {fileID: 0}

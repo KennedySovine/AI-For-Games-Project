@@ -140,26 +140,6 @@ public class KS_Unit : DD_BaseObject
 
     }
 
-    private void findNearest()
-    {
-
-        //Find nearest enemy
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTeam);
-        GameObject nearestEnemy = enemies[0];
-        nearestEnemyPosition = nearestEnemy.transform.position;
-
-        foreach (GameObject enemy in enemies)
-        {
-            if (Vector3.Distance(currentPosition, nearestEnemyPosition) < Vector3.Distance(currentPosition, enemy.transform.position))
-            {
-                nearestEnemy = enemy;
-                nearestEnemyPosition = nearestEnemy.transform.position;
-            }
-        }
-
-
-    }
-
     public void FarmMinions()
     {
         SendAttack(nearestMinionPosition);
@@ -214,16 +194,16 @@ public class KS_Unit : DD_BaseObject
     public void MoveUnit(Vector3 target)
     {
         Vector3 newTargetPos;
-        /*if (ai.isBlocked(currentPosition, target))
+        if (ai.isBlocked(gameObject))
         {
             newTargetPos = ai.nearestWPPosition(currentPosition);
         }
         else
         {
             newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
-        }*/
-        ai.isBlocked(gameObject);
-        newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
+        }
+        //ai.isBlocked(gameObject);
+        //newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
         //print(newTargetPos);
         transform.LookAt(newTargetPos);
         transform.position = Vector3.MoveTowards(currentPosition, newTargetPos, speed * Time.deltaTime);
