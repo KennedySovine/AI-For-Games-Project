@@ -6,11 +6,13 @@ public class PCUnit : MonoBehaviour
 {
     // ---------------------------------------------------------------------
     private DD_GameManager gameManager;
+    private DD_PlayerInputManager PIM;
     private KS_Unit unitScript = null;
     public Vector3 playerSetTarget = Vector3.zero;
 
-    private GameObject highlight;
     public bool isSelected = false;
+
+    private Vector3 newPosition;
 
     // check if squad active
     // Check unit is part of squad
@@ -20,6 +22,8 @@ public class PCUnit : MonoBehaviour
     {
         // The game manager will be use to access the game board
         gameManager = GameObject.Find("GameManager").GetComponent<DD_GameManager>();
+        PIM = gameManager.GetComponent<DD_PlayerInputManager>();
+        //print(PIM);
         // Unit Control script
         unitScript = GetComponent<KS_Unit>();
     }//-----
@@ -28,23 +32,10 @@ public class PCUnit : MonoBehaviour
     // ---------------------------------------------------------------------
     private void FixedUpdate()
     {
-        StateManagerPlayerControl();
+        //StateManagerPlayerControl();
     }//-----
 
 
 
     // ---------------------------------------------------------------------
-    private void StateManagerPlayerControl()
-    {
-        if (!unitScript.isPlayerControlled) return;
-
-        if (Vector3.Distance(unitScript.currentPosition, unitScript.nearestMinionPosition) < unitScript.attackRange)
-        {
-            if (gameManager.ai.CheckTargetInLineOfSight(unitScript.currentPosition, unitScript.nearestMinionPosition))
-            {
-                unitScript.unitState = States.farm;
-            }
-        }
-
-    }//-----
 }

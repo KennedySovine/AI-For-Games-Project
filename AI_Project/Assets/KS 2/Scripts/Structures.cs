@@ -6,7 +6,7 @@ public class Structures : MonoBehaviour
 {
     public bool isAlive = true;
     public bool canRegen;
-    public int health;
+    public float health;
     public int maxHealth;
     public int healthRegeneration;
 
@@ -28,11 +28,21 @@ public class Structures : MonoBehaviour
         {
             CancelInvoke();
         }
-        
+
     }
 
     void regenHealth()
     {
         health += healthRegeneration;
     }
+
+    public void Damage(float damage) // Damage Receiver
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            DestroyImmediate(gameObject, true);
+        }
+
+    }//-----
 }

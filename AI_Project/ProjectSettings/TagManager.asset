@@ -10,6 +10,7 @@ TagManager:
   - RedMinion
   - BlueMinion
   - Waypoints
+  - MoveWP
   layers:
   - Default
   - TransparentFX

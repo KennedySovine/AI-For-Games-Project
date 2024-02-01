@@ -15,7 +15,7 @@ public class Turret_Attack : MonoBehaviour
     // ---------------------------------------------------------------------
     void Start()
     {
-        range = 10;
+        range = 30;
         coolDown = 0.833F;
     }
 

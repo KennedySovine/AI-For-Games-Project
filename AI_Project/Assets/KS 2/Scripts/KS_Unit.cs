@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 // Enums
 public enum States { farm, idle, chase, attack, flee, wander, roam, enemy }
@@ -16,6 +17,7 @@ public class KS_Unit : DD_BaseObject
     // ---------------------------------------------------------------------
     public DD_GameManager gameManager;
     public DD_PlayerInputManager playerInputManager;
+    public DD_AI_Class ai;
     private Vector3 newPosition = Vector3.zero;
     public string team;
     public States unitState = States.idle;
@@ -36,6 +38,7 @@ public class KS_Unit : DD_BaseObject
     // Wander vars
     public bool obstacleAhead = false;
     public Vector3 originalRotation;
+    public Vector3 WP;
 
     [Header("EXP")]
     public Vector3 nearestMinionPosition = new(-50, 50, -50);
@@ -61,19 +64,16 @@ public class KS_Unit : DD_BaseObject
     // ---------------------------------------------------------------------
     private void Start()
     {
+        speed = 2;
+        unitState = States.wander;
         gameManager = GameObject.Find("GameManager").GetComponent<DD_GameManager>();
         playerInputManager = GameObject.Find("GameManager").GetComponent<DD_PlayerInputManager>();
+        ai = gameManager.GetComponent<DD_AI_Class>();
         nextStruct = gameManager.nextStructure(enemyTeam);
         //Get the unit's team
         team = gameObject.tag;
         // Round off postion to nearest int ands store the current position
         currentPosition = transform.position;
-
-
-        if (!isPlayerControlled)
-            unitState = States.wander;
-        else
-            unitState = States.idle;
 
         //Setting base stuff for 
         if (team == ("Red"))
@@ -95,7 +95,6 @@ public class KS_Unit : DD_BaseObject
 
         nextStruct = gameManager.nextStructure(enemyTeam);
         currentPosition = gameObject.transform.position;
-        newPosition = playerInputManager.getRCP();
         //print(newPosition);
         if (isAlive)
         {
@@ -112,6 +111,7 @@ public class KS_Unit : DD_BaseObject
         if (unitState == States.attack) AttackStruct();
         if (unitState == States.wander) MoveToStruct();
         if (unitState == States.enemy) AttackEnemy();
+        if (unitState == States.chase) ChaseClick();
 
     }//------
 
@@ -142,19 +142,6 @@ public class KS_Unit : DD_BaseObject
 
     private void findNearest()
     {
-        //Find nearest minion
-        GameObject[] minions = GameObject.FindGameObjectsWithTag(enemyMinions);
-        nearestMinion = minions[0];
-        nearestMinionPosition = nearestMinion.transform.position;
-
-        foreach (GameObject minion in minions)
-        {
-            if (Vector3.Distance(currentPosition, nearestMinionPosition) < Vector3.Distance(currentPosition, minion.transform.position))
-            {
-                nearestMinion = minion;
-                nearestMinionPosition = nearestMinion.transform.position;
-            }
-        }
 
         //Find nearest enemy
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTeam);
@@ -191,7 +178,6 @@ public class KS_Unit : DD_BaseObject
 
         if (nextAttackTime < Time.time)
         {
-            Debug.Log("Get here");
             GameObject unitAttack = Instantiate(attackPF, gameObject.transform);
             transform.LookAt(target);
             unitAttack.transform.SetParent(null);
@@ -214,7 +200,10 @@ public class KS_Unit : DD_BaseObject
         SendAttack(nextStruct.transform.position);
     }
 
-
+    private void ChaseClick()
+    {
+        MoveUnit(playerInputManager.RPC);
+    }
 
 
     private void MoveToStruct()
@@ -222,36 +211,19 @@ public class KS_Unit : DD_BaseObject
         MoveUnit(nextStruct.transform.position);
     }
 
-    private bool isBlocked(Vector3 target)
+    public void MoveUnit(Vector3 target)
     {
-        if (Physics.Linecast(currentPosition, target))
+        Vector3 newTargetPos;
+        if (ai.isBlocked(currentPosition, target))
         {
-            return true;
+            newTargetPos = ai.nearestWPPosition(currentPosition);
         }
-        return false;
-    }
-
-    private IEnumerator moveAround(Vector3 target)
-    {
-        while (isBlocked(target))
+        else
         {
-            transform.Rotate(new Vector3(0, 1, 0));
+            newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
         }
-        gameObject.transform.position = transform.forward * speed;
-        transform.Rotate(originalRotation);
-        yield return new WaitForSecondsRealtime(2);
-        transform.LookAt(target);
-    }
-
-
-    private void MoveUnit(Vector3 target)
-    {
-        // If object is blocked, move around it
-        while (isBlocked(target))
-        {
-            moveAround(target);
-        }
-        Vector3 newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
+        //newTargetPos = new Vector3(target.x, currentPosition.y, target.z);
+        //print(newTargetPos);
         transform.LookAt(newTargetPos);
         transform.position = Vector3.MoveTowards(currentPosition, newTargetPos, speed * Time.deltaTime);
     }//----

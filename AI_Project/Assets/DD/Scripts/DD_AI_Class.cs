@@ -8,45 +8,46 @@ using UnityEngine;
 public class DD_AI_Class : MonoBehaviour
 {
     // ---------------------------------------------------------------------
-    public Vector3[] wayPointPositions = new Vector3[25];
+    public GameObject[] movementWaypoints;
     DD_GameManager gameManager;
- //  public GameObject wpMarker = new();
+    //  public GameObject wpMarker = new();
 
     // ---------------------------------------------------------------------
     private void Start()
     {
         gameManager = GetComponent<DD_GameManager>();
+        movementWaypoints = gameManager.movementWaypoints;
     }//----
 
 
     // ---------------------------------------------------------------------
 
-    public bool CheckTargetInLineOfSight(Vector3 pStartPos, Vector3 pTargtetPos)
+    public Vector3 nearestWPPosition(Vector3 currentPos)
     {
-        Vector3 nextPos = Vector3.zero, currentPos = pStartPos;
-        bool canSeeTarget = false;
-        bool searching = true;
+        Vector3 nearestWP = movementWaypoints[0].transform.position;
 
-        while (searching)   // Loop until target  == currentPos or tile is not empty
+        foreach (GameObject WP in movementWaypoints)
         {
-            // Calculate angle to target
-            int dX = (int)Mathf.Round(pTargtetPos.x) - (int)Mathf.Round(currentPos.x);
-            int dZ = (int)Mathf.Round(pTargtetPos.z) - (int)Mathf.Round(currentPos.z);
-            float angle = Mathf.Atan2(dX, dZ);
-
-            // Calculate next Position
-            nextPos.x = currentPos.x + Mathf.Round(1.4F * Mathf.Sin(angle));
-            nextPos.z = currentPos.z + Mathf.Round(1.4F * Mathf.Cos(angle));
-
-            // Is the next Pos the target?
-            if (nextPos.x == pTargtetPos.x && nextPos.z == pTargtetPos.z)
+            if (Vector3.Distance(currentPos, nearestWP) < Vector3.Distance(currentPos, WP.transform.position))
             {
-                canSeeTarget = true;
-                searching = false; // exit loop                                
+                nearestWP = WP.transform.position;
             }
-            currentPos = nextPos;
         }
-        return canSeeTarget;
+        return nearestWP;
     }
+
+    public bool isBlocked(Vector3 currentPos, Vector3 target)
+    {
+        if (Physics.Linecast(currentPos, target))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /*public Vector3 WPMove(Vector3 currentPos)
+    {
+
+    }*/
 
 }//==========

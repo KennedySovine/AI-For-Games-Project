@@ -43,10 +43,10 @@ public class DD_PlayerInputManager : MonoBehaviour
         float newCamY = gameCamera.transform.position.y;
 
 
-        if (Input.mousePosition.y > 0 && Input.mousePosition.y < selectionBorderSize) newCamZ = gameCamera.transform.position.z - camMoveSpeed * Time.deltaTime; 
+        if (Input.mousePosition.y > 0 && Input.mousePosition.y < selectionBorderSize) newCamZ = gameCamera.transform.position.z - camMoveSpeed * Time.deltaTime;
         if (Input.mousePosition.x > 0 && Input.mousePosition.x < selectionBorderSize) newCamX = gameCamera.transform.position.x - camMoveSpeed * Time.deltaTime; ;
         if (Input.mousePosition.y < Screen.height && Input.mousePosition.y > Screen.height - selectionBorderSize) newCamZ = gameCamera.transform.position.z + camMoveSpeed * Time.deltaTime; ;
-        if (Input.mousePosition.x < Screen.width &&  Input.mousePosition.x > Screen.width - selectionBorderSize) newCamX = gameCamera.transform.position.x + camMoveSpeed * Time.deltaTime; ;
+        if (Input.mousePosition.x < Screen.width && Input.mousePosition.x > Screen.width - selectionBorderSize) newCamX = gameCamera.transform.position.x + camMoveSpeed * Time.deltaTime; ;
 
         gameCamera.transform.position = new(newCamX, newCamY, newCamZ);
 
@@ -96,9 +96,9 @@ public class DD_PlayerInputManager : MonoBehaviour
         RPC.x = e.x;
         RPC.z = e.y;
         RPC.y = 0;
-        print(RPC.x);
-        print(RPC.z);
-        print(RPC);
+        //print(RPC.x);
+        //print(RPC.z);
+        //print(RPC);
     }
 
 

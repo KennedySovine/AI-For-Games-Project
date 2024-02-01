@@ -36,7 +36,7 @@ public class Attack_Minion : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<MinionHealth>().Damage(damage);
+        collision.gameObject.GetComponent<Structures>().Damage(damage);
     }
 
 
